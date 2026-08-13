@@ -134,3 +134,32 @@ Criação das políticas operacionais da automação.
 ### Próxima atividade
 
 Revisar as políticas e preparar os workflows operacionais da automação.
+
+## 2026-08-13 — Workflows operacionais
+
+### Atividade
+
+Criação dos workflows operacionais da automação.
+
+### Workflows definidos
+
+- retomada de tarefa;
+- implementação de novo recurso;
+- ciclo de vida de plugins;
+- correção de falhas;
+- manutenção preventiva.
+
+### Regras estabelecidas
+
+- todos os workflows possuem fases explícitas;
+- cada tarefa possui checkpoint;
+- ações externas exigem aprovação independente;
+- tarefas com múltiplos repositórios possuem checkpoints separados;
+- manutenção preventiva gera tarefas independentes;
+- bloqueios interrompem o fluxo;
+- rollback deve ser definido antes da implementação.
+
+### Próxima atividade
+
+Revisar os workflows e preparar a documentação dos MCPs e ferramentas
+permitidas para cada agente.

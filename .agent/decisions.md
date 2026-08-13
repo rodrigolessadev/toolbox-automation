@@ -66,3 +66,16 @@ Cada decisão deve informar:
 - Impacto: cada agente e workflow deverá classificar as operações antes da
   execução.
 - Responsável: Rodrigo
+
+## DEC-005 — Workflows separados por tipo de tarefa
+
+- Data: 2026-08-13
+- Status: aprovada
+- Contexto: diferentes tipos de tarefa possuem riscos, validações e agentes
+  distintos.
+- Decisão: utilizar workflows separados para retomada, novo recurso, plugins,
+  correção de falhas e manutenção preventiva.
+- Motivo: reduzir ambiguidade e permitir critérios específicos por tipo de
+  operação.
+- Impacto: cada workflow terá fases, bloqueios, validações e rollback próprios.
+- Responsável: Rodrigo

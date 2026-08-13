@@ -2,7 +2,7 @@
 
 ## Estado atual
 
-- Tarefa ativa: política de permissões, aprovações e bloqueios
+- Tarefa ativa: criação dos workflows operacionais
 - Status: concluído
 - Última atualização: 2026-08-13
 - Responsável: Rodrigo
@@ -27,21 +27,12 @@ riscos conhecidos dos projetos:
 
 ## Próxima ação
 
-Revisar as políticas e criar os workflows operacionais da automação.
-
-## Próxima ação
-
-Revisar o inventário e identificar as áreas que precisam de análise mais
-detalhada antes da criação dos agentes.
+Revisar os workflows e documentar os MCPs, ferramentas e integrações
+permitidos para cada agente.
 
 ## Em andamento
 
 - Nenhuma atividade em andamento.
-
-## Próxima ação
-
-Realizar a leitura técnica dos três diretórios e preencher o inventário sem
-modificar os projetos.
 
 ## Bloqueios
 
