@@ -2,7 +2,7 @@
 
 ## Estado atual
 
-- Tarefa ativa: definição dos contratos estruturados
+- Tarefa ativa: especificação dos agentes especializados
 - Status: concluído
 - Última atualização: 2026-08-13
 - Responsável: Rodrigo
@@ -27,7 +27,8 @@ riscos conhecidos dos projetos:
 
 ## Próxima ação
 
-Revisar os contratos e preparar a especificação dos agentes especializados.
+Revisar as permissões dos agentes e criar a política de aprovação e bloqueio
+da automação.
 
 ## Próxima ação
 

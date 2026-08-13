@@ -77,3 +77,32 @@ Foram definidos schemas para:
 ### Próxima atividade
 
 Revisar os schemas e preparar a especificação dos agentes especializados.
+
+## 2026-08-13 — Especificação dos agentes
+
+### Atividade
+
+Definição dos agentes especializados da Toolbox Automation Platform.
+
+### Agentes definidos
+
+- orquestrador;
+- analista;
+- implementador;
+- testador;
+- revisor visual;
+- revisor de segurança;
+- gerente de release.
+
+### Regras estabelecidas
+
+- responsabilidades separadas;
+- implementação dependente de aprovação;
+- testes independentes da implementação;
+- revisão de segurança independente;
+- ações externas sob aprovação humana;
+- saídas vinculadas aos schemas estruturados.
+
+### Próxima atividade
+
+Revisar as permissões dos agentes e preparar a política operacional de aprovação.
