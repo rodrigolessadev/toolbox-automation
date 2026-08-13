@@ -1,0 +1,15 @@
+﻿projects:
+  toolbox-automation:
+    local: "C:\\caminho\\para\\toolbox-automation"
+    remote: "https://github.com/rodrigolessadev/toolbox-automation"
+    role: "Agentes, workflows, políticas e documentação da automação"
+
+  toolbox:
+    local: "C:\\caminho\\para\\toolbox"
+    remote: "https://github.com/rodrigolessadev/toolbox"
+    role: "Aplicação principal, interface, execução e gerenciamento de plugins"
+
+  toolbox-plugins:
+    local: "C:\\caminho\\para\\toolbox-plugins"
+    remote: "https://github.com/rodrigolessadev/toolbox-plugins"
+    role: "Plugins, metadados, empacotamento e catálogo"

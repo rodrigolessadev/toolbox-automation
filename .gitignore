@@ -1,0 +1,45 @@
+@'
+# Configurações locais da máquina
+config/local-projects.yaml
+config/local-projects.local.yaml
+*.local.yaml
+*.local.json
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# Arquivos temporários
+tmp/
+temp/
+.cache/
+logs/
+*.log
+
+# Artefatos de execução
+artifacts/
+reports/generated/
+screenshots/generated/
+
+# Cache de ferramentas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+__pycache__/
+node_modules/
+
+# Arquivos específicos de editores
+.vscode/
+.idea/
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
+'@ | Set-Content -Encoding UTF8 ".gitignore"
