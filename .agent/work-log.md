@@ -106,3 +106,31 @@ Definição dos agentes especializados da Toolbox Automation Platform.
 ### Próxima atividade
 
 Revisar as permissões dos agentes e preparar a política operacional de aprovação.
+
+## 2026-08-13 — Política de permissões e aprovações
+
+### Atividade
+
+Criação das políticas operacionais da automação.
+
+### Políticas definidas
+
+- níveis de permissão;
+- aprovação humana;
+- ações bloqueadas;
+- acesso a arquivos;
+- ações externas;
+- regras de parada.
+
+### Decisões principais
+
+- a automação seguirá o princípio do menor privilégio;
+- ações externas exigirão aprovação específica;
+- alterações destrutivas serão bloqueadas por padrão;
+- arquivos sensíveis não serão lidos ou exibidos;
+- a aprovação expirará quando o escopo mudar;
+- alterações locais nunca serão descartadas automaticamente.
+
+### Próxima atividade
+
+Revisar as políticas e preparar os workflows operacionais da automação.

@@ -2,7 +2,7 @@
 
 ## Estado atual
 
-- Tarefa ativa: especificação dos agentes especializados
+- Tarefa ativa: política de permissões, aprovações e bloqueios
 - Status: concluído
 - Última atualização: 2026-08-13
 - Responsável: Rodrigo
@@ -27,8 +27,7 @@ riscos conhecidos dos projetos:
 
 ## Próxima ação
 
-Revisar as permissões dos agentes e criar a política de aprovação e bloqueio
-da automação.
+Revisar as políticas e criar os workflows operacionais da automação.
 
 ## Próxima ação
 

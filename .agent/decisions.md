@@ -50,3 +50,19 @@ Cada decisão deve informar:
 - Impacto: a automação poderá preparar essas ações, mas não executá-las
   automaticamente.
 - Responsável: Rodrigo
+
+## DEC-004 — Modelo de permissões em quatro níveis
+
+- Data: 2026-08-13
+- Status: aprovada
+- Contexto: a automação precisará executar leituras, alterações locais,
+  operações sensíveis e ações externas.
+- Decisão: utilizar quatro níveis de permissão:
+  1. leitura e análise;
+  2. alteração reversível local;
+  3. alteração sensível;
+  4. ação externa ou destrutiva.
+- Motivo: aplicar menor privilégio e tornar as aprovações explícitas.
+- Impacto: cada agente e workflow deverá classificar as operações antes da
+  execução.
+- Responsável: Rodrigo
