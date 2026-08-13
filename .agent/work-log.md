@@ -163,3 +163,32 @@ Criação dos workflows operacionais da automação.
 
 Revisar os workflows e preparar a documentação dos MCPs e ferramentas
 permitidas para cada agente.
+
+## 2026-08-13 — MCPs e integrações
+
+### Atividade
+
+Documentação dos MCPs, ferramentas e integrações disponíveis para os agentes.
+
+### Integrações documentadas
+
+- arquivos e código;
+- Graphify;
+- GitHub;
+- execução controlada;
+- navegador;
+- documentação técnica.
+
+### Regras estabelecidas
+
+- cada agente recebe somente as ferramentas necessárias;
+- escrita externa exige aprovação;
+- ferramentas indisponíveis não devem ser substituídas por permissões maiores;
+- segredos não podem ser enviados a integrações externas;
+- comandos devem possuir finalidade e risco registrados;
+- o resultado de cada operação relevante deve ser documentado.
+
+### Próxima atividade
+
+Revisar os MCPs documentados e preparar os arquivos de configuração local e
+os procedimentos de inicialização da automação.

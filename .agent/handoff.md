@@ -2,7 +2,7 @@
 
 ## Estado atual
 
-- Tarefa ativa: criação dos workflows operacionais
+- Tarefa ativa: documentação dos MCPs e integrações
 - Status: concluído
 - Última atualização: 2026-08-13
 - Responsável: Rodrigo
@@ -27,8 +27,8 @@ riscos conhecidos dos projetos:
 
 ## Próxima ação
 
-Revisar os workflows e documentar os MCPs, ferramentas e integrações
-permitidos para cada agente.
+Revisar os MCPs documentados e preparar os arquivos de configuração local e
+os procedimentos de inicialização da automação.
 
 ## Em andamento
 

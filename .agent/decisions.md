@@ -79,3 +79,15 @@ Cada decisão deve informar:
   operação.
 - Impacto: cada workflow terá fases, bloqueios, validações e rollback próprios.
 - Responsável: Rodrigo
+
+## DEC-006 — Ferramentas separadas por responsabilidade
+
+- Data: 2026-08-13
+- Status: aprovada
+- Contexto: agentes diferentes precisam de capacidades diferentes.
+- Decisão: separar as integrações em arquivos e permissões específicas para
+  arquivos, Graphify, GitHub, execução controlada, navegador e documentação.
+- Motivo: aplicar menor privilégio e facilitar auditoria.
+- Impacto: nenhum agente deverá receber acesso geral quando uma ferramenta
+  específica for suficiente.
+- Responsável: Rodrigo
