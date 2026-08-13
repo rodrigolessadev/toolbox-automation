@@ -1,0 +1,109 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rodrigolessadev/toolbox-automation/schemas/implementation-result.schema.json",
+  "title": "Resultado da implementação",
+  "description": "Registro das alterações realizadas por um agente.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "status",
+    "changed_files",
+    "created_files",
+    "deleted_files",
+    "commands_executed",
+    "scope_compliance",
+    "unexpected_changes",
+    "notes"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^TASK-[0-9]{3,}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "partially_completed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "changed_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "deleted_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commands_executed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "command",
+          "purpose",
+          "result"
+        ],
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "blocked",
+              "not_run"
+            ]
+          }
+        }
+      }
+    },
+    "scope_compliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compliant",
+        "details"
+      ],
+      "properties": {
+        "compliant": {
+          "type": "boolean"
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "unexpected_changes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rodrigolessadev/toolbox-automation/schemas/workflow-result.schema.json",
+  "title": "Resultado do workflow",
+  "description": "Resultado consolidado de um workflow da automação.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "status",
+    "summary",
+    "repositories",
+    "files_changed",
+    "validation_status",
+    "review_status",
+    "approvals_pending",
+    "remaining_risks",
+    "next_action"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^TASK-[0-9]{3,}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "completed_with_warnings",
+        "blocked",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 10
+    },
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "toolbox-automation",
+          "toolbox",
+          "toolbox-plugins"
+        ]
+      }
+    },
+    "files_changed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation_status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "passed_with_warnings",
+        "failed",
+        "not_run"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "approved_with_warnings",
+        "changes_requested",
+        "not_reviewed"
+      ]
+    },
+    "approvals_pending": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "remaining_risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_action": {
+      "type": "string"
+    }
+  }
+}

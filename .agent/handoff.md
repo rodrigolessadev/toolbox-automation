@@ -2,7 +2,7 @@
 
 ## Estado atual
 
-- Tarefa ativa: inventário inicial dos repositórios
+- Tarefa ativa: definição dos contratos estruturados
 - Status: concluído
 - Última atualização: 2026-08-13
 - Responsável: Rodrigo
@@ -23,6 +23,11 @@ riscos conhecidos dos projetos:
 - Escopo documentado.
 - Arquivos de contexto criados.
 - Inventário básico dos três repositórios realizado.
+- Schemas estruturados criados e validados.
+
+## Próxima ação
+
+Revisar os contratos e preparar a especificação dos agentes especializados.
 
 ## Próxima ação
 

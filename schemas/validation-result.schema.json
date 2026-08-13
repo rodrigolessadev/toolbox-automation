@@ -1,0 +1,143 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rodrigolessadev/toolbox-automation/schemas/validation-result.schema.json",
+  "title": "Resultado da validação",
+  "description": "Resultado dos testes, lint, build e demais verificações.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "status",
+    "checks",
+    "secret_scan",
+    "scope_check",
+    "compatibility_check",
+    "blocking_issues"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^TASK-[0-9]{3,}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "passed_with_warnings",
+        "failed",
+        "blocked",
+        "not_run"
+      ]
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "type",
+          "result"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "test",
+              "lint",
+              "build",
+              "typecheck",
+              "visual",
+              "accessibility",
+              "catalog",
+              "packaging",
+              "integration",
+              "other"
+            ]
+          },
+          "command": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "skipped",
+              "not_run"
+            ]
+          },
+          "details": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "secret_scan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "performed",
+        "passed"
+      ],
+      "properties": {
+        "performed": {
+          "type": "boolean"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "scope_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "passed",
+        "unexpected_files"
+      ],
+      "properties": {
+        "passed": {
+          "type": "boolean"
+        },
+        "unexpected_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "compatibility_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "performed",
+        "passed"
+      ],
+      "properties": {
+        "performed": {
+          "type": "boolean"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "details": {
+          "type": "string"
+        }
+      }
+    },
+    "blocking_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

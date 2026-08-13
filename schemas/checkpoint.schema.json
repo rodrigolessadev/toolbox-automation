@@ -1,0 +1,95 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rodrigolessadev/toolbox-automation/schemas/checkpoint.schema.json",
+  "title": "Checkpoint da tarefa",
+  "description": "Estado persistente para retomada de uma tarefa.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "status",
+    "current_phase",
+    "completed_phases",
+    "pending_actions",
+    "modified_repositories",
+    "modified_files",
+    "blocking_issues",
+    "next_action"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^TASK-[0-9]{3,}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "planned",
+        "in_progress",
+        "blocked",
+        "validation",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "current_phase": {
+      "type": "string",
+      "enum": [
+        "intake",
+        "analysis",
+        "planning",
+        "approval",
+        "implementation",
+        "validation",
+        "review",
+        "handoff",
+        "completed"
+      ]
+    },
+    "completed_phases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pending_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modified_repositories": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "toolbox-automation",
+          "toolbox",
+          "toolbox-plugins"
+        ]
+      }
+    },
+    "modified_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocking_issues": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_action": {
+      "type": "string",
+      "minLength": 5
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

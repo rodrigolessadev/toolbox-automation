@@ -45,3 +45,35 @@ Somente arquivos de documentação do repositório
 ### Próxima atividade
 
 Revisar o inventário e preparar a especificação dos agentes especializados.
+
+## 2026-08-13 — Definição dos schemas
+
+### Atividade
+
+Criação dos contratos estruturados da automação.
+
+### Resultado
+
+Foram definidos schemas para:
+
+- solicitação de tarefa;
+- análise;
+- plano de implementação;
+- resultado da implementação;
+- validação;
+- revisão;
+- checkpoint;
+- resultado final do workflow.
+
+### Regras estabelecidas
+
+- toda tarefa possui um identificador único;
+- estados são padronizados;
+- tarefas bloqueadas não podem ser concluídas;
+- alterações fora do escopo bloqueiam o workflow;
+- resultados parciais devem ser preservados;
+- aprovações pendentes devem aparecer no resultado final.
+
+### Próxima atividade
+
+Revisar os schemas e preparar a especificação dos agentes especializados.

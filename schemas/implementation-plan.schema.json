@@ -1,0 +1,176 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rodrigolessadev/toolbox-automation/schemas/implementation-plan.schema.json",
+  "title": "Plano de implementação",
+  "description": "Plano aprovado para execução de uma tarefa.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "objective",
+    "steps",
+    "files_to_change",
+    "tests",
+    "approval_points",
+    "success_criteria",
+    "rollback_strategy",
+    "status"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^TASK-[0-9]{3,}$"
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 10
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "order",
+          "description",
+          "repository",
+          "risk_level"
+        ],
+        "properties": {
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 5
+          },
+          "repository": {
+            "type": "string",
+            "enum": [
+              "toolbox-automation",
+              "toolbox",
+              "toolbox-plugins"
+            ]
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "requires_approval": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "files_to_change": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repository",
+          "path",
+          "change_type"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string",
+            "enum": [
+              "toolbox-automation",
+              "toolbox",
+              "toolbox-plugins"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "change_type": {
+            "type": "string",
+            "enum": [
+              "create",
+              "modify",
+              "delete",
+              "rename"
+            ]
+          }
+        }
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "command",
+          "required"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "approval_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reason",
+          "required_before"
+        ],
+        "properties": {
+          "reason": {
+            "type": "string"
+          },
+          "required_before": {
+            "type": "string",
+            "enum": [
+              "implementation",
+              "sensitive_change",
+              "external_action",
+              "destructive_action"
+            ]
+          }
+        }
+      }
+    },
+    "success_criteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback_strategy": {
+      "type": "string",
+      "minLength": 10
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "awaiting_approval",
+        "approved",
+        "blocked",
+        "rejected"
+      ]
+    }
+  }
+}

@@ -1,0 +1,93 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rodrigolessadev/toolbox-automation/schemas/review-result.schema.json",
+  "title": "Resultado da revisão",
+  "description": "Resultado de uma revisão especializada.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "review_type",
+    "status",
+    "findings",
+    "recommendation"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^TASK-[0-9]{3,}$"
+    },
+    "review_type": {
+      "type": "string",
+      "enum": [
+        "code",
+        "security",
+        "visual",
+        "accessibility",
+        "architecture",
+        "compatibility",
+        "documentation"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "approved_with_warnings",
+        "changes_requested",
+        "blocked",
+        "not_reviewed"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "severity",
+          "title",
+          "description",
+          "recommendation"
+        ],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string"
+          },
+          "line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "recommendation": {
+      "type": "string",
+      "enum": [
+        "proceed",
+        "proceed_after_fixes",
+        "request_approval",
+        "stop"
+      ]
+    }
+  }
+}
