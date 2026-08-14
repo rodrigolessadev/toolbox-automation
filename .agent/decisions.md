@@ -121,3 +121,17 @@ Cada decisão deve informar:
 - Limitação: essa suíte não substitui testes de integração, segurança ou
   compatibilidade.
 - Responsável: Rodrigo
+
+## DEC-009 — Revisão integrada antes da primeira execução
+
+- Data: 2026-08-14
+- Status: aprovada
+- Contexto: os componentes da automação foram definidos em etapas separadas e
+  podem possuir referências ou regras inconsistentes.
+- Decisão: executar uma revisão integrada antes de configurar agentes reais ou
+  iniciar alterações nos projetos.
+- Motivo: detectar contradições, referências quebradas e permissões excessivas
+  antes da operação.
+- Impacto: a primeira execução real dependerá da aprovação da revisão
+  integrada.
+- Responsável: Rodrigo

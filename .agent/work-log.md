@@ -258,3 +258,36 @@ antes da configuração dos agentes reais.
 ### Próxima atividade
 
 Executar a validação completa e preparar a revisão integrada da plataforma.
+
+## 2026-08-14 — Revisão integrada da plataforma
+
+### Atividade
+
+Revisão integrada da estrutura, dos contratos, das políticas, dos workflows,
+dos MCPs, dos scripts e dos procedimentos de teste.
+
+### Escopo revisado
+
+- estrutura de diretórios;
+- contexto persistente;
+- schemas;
+- agentes;
+- políticas;
+- workflows;
+- MCPs;
+- configuração local;
+- scripts;
+- avaliações;
+- proteção do Git.
+
+### Resultado
+
+- Status: A confirmar
+- Falhas críticas: A confirmar
+- Pendências: A confirmar
+- Bloqueios: A confirmar
+
+### Próxima atividade
+
+Corrigir inconsistências encontradas e preparar a aprovação para a primeira
+execução controlada.
