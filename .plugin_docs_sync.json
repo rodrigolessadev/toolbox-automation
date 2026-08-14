@@ -1,0 +1,52 @@
+{
+  "har-kibana-planner": {
+    "hash": "41a399a45f787aeb7a03701097b43e4f756dbc522c3640f6e817260c3fd3ff6e",
+    "version": "1.0.0",
+    "updated_at": "2026-08-14"
+  },
+  "gerador-afd": {
+    "hash": "0c3f0eac091ca05ef8e5ab64655c0a5647b8eb67a1229273ca8e4ee1aff3e8bc",
+    "version": "1.0.0",
+    "updated_at": "2026-08-14"
+  },
+  "calc-jornadas": {
+    "hash": "377c7504eb742ba18d52ffcc844ffd01da1a2486afec80d5b51599c191b57624",
+    "version": "1.1.0",
+    "updated_at": "2026-08-13"
+  },
+  "converter-data": {
+    "hash": "f25f7c8437e9090b6b0c20702f92de9f970cf980c11a3026eec4326da1cca3c0",
+    "version": "1.0.1",
+    "updated_at": "2026-08-13"
+  },
+  "stract-json": {
+    "hash": "0c0a96fc6bdbf4439f17afc5c3797ca3ce395c6053dcfcb7d6ca05808d1d918d",
+    "version": "1.0.1",
+    "updated_at": "2026-08-13"
+  },
+  "gerador-marcacoes": {
+    "hash": "ed0ff09b2c5398880323b4412569532c4967e63ba5e2cfd3972f147e9603c80f",
+    "version": "2.2.1",
+    "updated_at": "2026-08-03"
+  },
+  "cpf": {
+    "hash": "728fb4c7ff782a5fcf277a7e5f0a4167b7c38afef5e283932607fdb29c4728ee",
+    "version": "1.0.0",
+    "updated_at": ""
+  },
+  "gerador-json": {
+    "hash": "f32e392fe1d0614099beba4a2971182c62fa2fd1239bbec8171bff1b670bb86b",
+    "version": "1.0.0",
+    "updated_at": ""
+  },
+  "stract-log": {
+    "hash": "02158c3022d43b1422ba7ff12227356d4bea5f8ea6299cebea0a2df111487322",
+    "version": "1.0.0",
+    "updated_at": ""
+  },
+  "analysis-orchestrator": {
+    "hash": "2e6be35454d6801ffa1447ca9d0b9d08aeed6558757640432aefe99297cc81a4",
+    "version": "1.0.1",
+    "updated_at": "2026-08-14"
+  }
+}
