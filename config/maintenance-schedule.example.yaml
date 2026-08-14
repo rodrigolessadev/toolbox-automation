@@ -1,0 +1,43 @@
+﻿version: 1
+
+maintenance:
+  enabled: false
+  mode: manual
+  frequency: undefined
+  requires_human_approval: true
+
+initial_scope:
+  repositories:
+    - toolbox-automation
+  areas:
+    - schemas
+    - policies
+    - workflows
+    - scripts
+    - evals
+  external_actions: false
+  dependency_updates: false
+  destructive_actions: false
+
+checks:
+  - structural_consistency
+  - schema_references
+  - protected_paths
+  - ignored_local_files
+  - workflow_completeness
+  - script_safety
+  - test_status
+  - documentation_consistency
+
+limits:
+  max_findings_per_cycle: 10
+  max_repositories_per_cycle: 1
+  max_automatic_changes: 0
+  require_separate_task_per_fix: true
+
+approval:
+  approve_scope: required
+  approve_plan: required
+  approve_dependencies: required
+  approve_external_actions: required
+  approve_destructive_actions: required

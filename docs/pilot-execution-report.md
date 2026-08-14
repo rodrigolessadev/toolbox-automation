@@ -95,3 +95,20 @@ A confirmar.
 ## Observações
 
 A confirmar.
+
+## Resultado registrado — 2026-08-14
+
+- Status: aprovado com observações
+- Suíte estrutural: aprovada
+- Verificação dos projetos: aprovada
+- Contexto persistente: carregado
+- Arquivos criados: `docs/pilot-observation-note.md`
+- Arquivos de produto alterados: nenhum
+- Arquivos protegidos envolvidos: nenhum
+- Ações externas: nenhuma
+- Dependências novas: nenhuma
+- Alterações destrutivas: nenhuma
+- Revisão do diff: aprovada
+- Bloqueios: nenhum identificado
+- Riscos remanescentes: execução ainda não validou agentes reais ou MCPs reais
+- Próxima ação: definir e revisar o procedimento de manutenção preventiva

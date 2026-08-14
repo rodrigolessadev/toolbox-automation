@@ -147,3 +147,17 @@ Cada decisão deve informar:
 - Impacto: nenhuma ação externa, alteração destrutiva ou mudança em repositórios
   de produto será permitida nessa execução.
 - Responsável: Rodrigo
+
+## DEC-011 — Manutenção preventiva inicialmente manual
+
+- Data: 2026-08-14
+- Status: aprovada
+- Contexto: a plataforma ainda está em fase inicial e os agentes reais não
+  foram configurados.
+- Decisão: manter a manutenção preventiva manual, sob solicitação explícita,
+  sem alterações automáticas.
+- Motivo: permitir observação gradual e reduzir risco operacional.
+- Impacto: nenhum ciclo periódico será ativado sem aprovação posterior.
+- Limite: cada correção deverá possuir tarefa, escopo, plano e checkpoint
+  próprios.
+- Responsável: Rodrigo

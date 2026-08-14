@@ -196,3 +196,64 @@ Não realizar uma reversão global sem identificar:
 - quais arquivos foram alterados;
 - quais dependências foram atualizadas;
 - quais efeitos externos ocorreram.
+
+## Execução operacional
+
+A manutenção preventiva deverá ser executada em ciclos controlados.
+
+### Ciclo recomendado
+
+1. verificar o estado dos repositórios;
+2. carregar o contexto persistente;
+3. definir a área da inspeção;
+4. executar somente verificações de leitura;
+5. registrar os achados;
+6. classificar os riscos;
+7. criar tarefas independentes;
+8. solicitar aprovação para cada correção;
+9. implementar uma correção por vez;
+10. validar a correção;
+11. atualizar o checkpoint;
+12. produzir o relatório.
+
+### Frequência inicial
+
+A frequência deverá ser definida após observar:
+
+- volume de alterações;
+- frequência de falhas;
+- instabilidade dos testes;
+- mudanças de dependências;
+- alterações no catálogo;
+- riscos de segurança;
+- capacidade de revisão humana.
+
+Até que uma frequência seja aprovada, a manutenção deverá ser executada
+somente sob solicitação explícita.
+
+### Limite por ciclo
+
+Cada ciclo deverá possuir:
+
+- escopo definido;
+- quantidade limitada de achados;
+- prioridade registrada;
+- arquivos autorizados;
+- critério de encerramento;
+- responsável pela revisão.
+
+Não corrigir todos os achados automaticamente em um único ciclo.
+
+### Resultado obrigatório
+
+Cada ciclo deverá produzir:
+
+- áreas inspecionadas;
+- verificações executadas;
+- achados classificados;
+- tarefas criadas;
+- correções concluídas;
+- itens pendentes;
+- riscos remanescentes;
+- bloqueios;
+- próxima revisão recomendada.

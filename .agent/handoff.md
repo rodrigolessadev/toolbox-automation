@@ -59,3 +59,15 @@ Registrar o estado e solicitar orientação antes de qualquer modificação.
 
 Revisar e aprovar a tarefa-piloto `TASK-101`. Não iniciar implementação antes
 da aprovação explícita.
+
+## Estado atual
+
+- Tarefa ativa: execução da tarefa-piloto concluída
+- Status: concluído com observações
+- Última atualização: 2026-08-14
+- Responsável: Rodrigo
+
+## Próxima ação
+
+Revisar o workflow de manutenção preventiva. A automação ainda não está
+autorizada a executar ações externas ou manutenção automática.

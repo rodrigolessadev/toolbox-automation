@@ -315,3 +315,29 @@ Aguardando aprovação humana para iniciar a execução.
 
 Executar a tarefa-piloto somente após o checklist e a aprovação estarem
 registrados.
+
+## 2026-08-14 — Execução da tarefa-piloto
+
+### Atividade
+
+Execução controlada da TASK-101 para validar o fluxo local da automação.
+
+### Escopo
+
+- somente `toolbox-automation`;
+- alteração documental;
+- nenhuma dependência;
+- nenhuma ação externa;
+- nenhuma alteração destrutiva.
+
+### Resultado
+
+- Status: aprovado com observações
+- Testes: A confirmar
+- Arquivos de produto alterados: nenhum
+- Bloqueios: A confirmar
+- Riscos remanescentes: agentes e MCPs reais ainda não configurados
+
+### Próxima atividade
+
+Definir e revisar o processo operacional de manutenção preventiva.
