@@ -8,7 +8,7 @@ Consolidar a entrega da tarefa, estruturar a mensagem de commit vinculada à iss
 ## Regras Obrigatórias
 1. **Commit padronizado**: A mensagem do commit deve conter a referência explícita para fechamento da issue (ex: `feat(ui): avisos de updates para plugins e toolbox (Closes #1)`).
 2. **Atualização do Kanban**: Atualizar `.release_plugin_state\state.json` movendo a issue para `🔍 Em revisão` ou `✅ Concluído`.
-3. **Aprovação para ações remotas**: Solicitar aprovação explícita antes de executar `git push` ou criar tags de release.
+3. **Não duplicar `releases.md`**: O arquivo `releases.md` e `changelog.md` são atualizados automaticamente pelo próprio plugin `release` na etapa `[2/8]` do release. A automação deve apenas **gerar o texto das notas formatado** na resposta para o usuário colar na caixa de texto do plugin, evitando duplicar entradas manualmente no código da branch.
 4. **Relatório final**: Gerar o resumo final de entrega via `walkthrough.md`.
 
 ## Saída Estruturada Obrigatória de Encerramento
@@ -19,15 +19,9 @@ Ao concluir a implementação de qualquer issue/tarefa, a resposta final **DEVE 
   - *Patch* (`+0.0.1`): Correção de bugs (`fix:`).
   - *Minor* (`+0.1.0`): Nova funcionalidade retrocompatível (`feat:`).
   - *Major* (`+1.0.0`): Mudança que quebra contratos existentes (`BREAKING CHANGE:`).
-- **Mensagem de Commit / Release Notes**: Texto descritivo e objetivo das alterações implementadas.
-
-### 2. Texto Markdown para `releases.md` (quando aplicável ao Toolbox):
-Bloco pronto formatado exatamente no padrão do projeto:
+- **Mensagem de Commit**: Mensagem convencional vinculada à issue.
+- **Notas do Release (Texto para a caixa de texto do plugin)**:
 ```markdown
-## vX.Y.Z - AAAA-MM-DD [Download](https://github.com/rodrigolessadev/toolbox/releases/download/vX.Y.Z/Toolbox_X.Y.Z_x64-setup.exe)
-<details>
-<summary>Ver detalhes da versão</summary>
-
 - Added:
   - ...
 - Changed:
@@ -38,6 +32,4 @@ Bloco pronto formatado exatamente no padrão do projeto:
   - (sem itens nesta versão)
 - Security:
   - ...
-
-</details>
 ```
