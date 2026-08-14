@@ -47,3 +47,15 @@ Executar a validação completa e preparar a revisão integrada da plataforma.
 
 Se forem encontradas alterações locais nos projetos, não descartá-las.
 Registrar o estado e solicitar orientação antes de qualquer modificação.
+
+## Estado atual
+
+- Tarefa ativa: preparação da primeira execução controlada
+- Status: aguardando aprovação
+- Última atualização: 2026-08-14
+- Responsável: Rodrigo
+
+## Próxima ação
+
+Revisar e aprovar a tarefa-piloto `TASK-101`. Não iniciar implementação antes
+da aprovação explícita.

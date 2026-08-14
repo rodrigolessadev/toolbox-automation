@@ -291,3 +291,27 @@ dos MCPs, dos scripts e dos procedimentos de teste.
 
 Corrigir inconsistências encontradas e preparar a aprovação para a primeira
 execução controlada.
+## 2026-08-14 — Preparação da primeira execução controlada
+
+### Atividade
+
+Definição da tarefa-piloto, dos limites de execução, dos critérios de sucesso,
+do plano de observação e do procedimento de interrupção segura.
+
+### Limites
+
+- somente o repositório `toolbox-automation`;
+- risco baixo;
+- nenhuma ação externa;
+- nenhuma alteração destrutiva;
+- nenhuma dependência nova;
+- rollback local e reversível.
+
+### Status
+
+Aguardando aprovação humana para iniciar a execução.
+
+### Próxima atividade
+
+Executar a tarefa-piloto somente após o checklist e a aprovação estarem
+registrados.

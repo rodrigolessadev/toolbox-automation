@@ -135,3 +135,15 @@ Cada decisão deve informar:
 - Impacto: a primeira execução real dependerá da aprovação da revisão
   integrada.
 - Responsável: Rodrigo
+## DEC-010 — Primeira execução com tarefa-piloto limitada
+
+- Data: 2026-08-14
+- Status: aprovada
+- Contexto: a plataforma precisa ser validada em operação antes de receber
+  tarefas mais amplas.
+- Decisão: realizar a primeira execução somente com uma tarefa pequena, local,
+  reversível e limitada ao repositório `toolbox-automation`.
+- Motivo: reduzir o risco operacional e observar o comportamento do fluxo.
+- Impacto: nenhuma ação externa, alteração destrutiva ou mudança em repositórios
+  de produto será permitida nessa execução.
+- Responsável: Rodrigo
