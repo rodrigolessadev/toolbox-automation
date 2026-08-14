@@ -10,6 +10,11 @@ A automação poderá atuar somente nos diretórios:
 
 O agente deverá identificar o projeto antes de ler ou modificar arquivos. Contém proteção estrita a segredos e credenciais.
 
+## Plugins Privados e Exclusões de Publicação
+
+- O plugin **`plugins/release/`** (`C:\tools\toolbox-plugins\plugins\release`) é classificado como **plugin privado e de uso estritamente local/operacional**.
+- **Regra de Bloqueio**: O plugin `release` **NUNCA** deve ser publicado no catálogo público (`catalog.json`), empacotado para o Marketplace ou enviado como release pública de plugin.
+
 ## Arquivos permitidos para leitura
 
 Podem ser lidos, dentro do escopo:

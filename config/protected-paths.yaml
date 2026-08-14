@@ -10,9 +10,13 @@ protected_patterns:
   - "**/secrets/**"
   - "**/credentials/**"
 
+private_plugins:
+  - "plugins/release/**"
+
 rules:
   read: blocked
   display: blocked
   copy: blocked
   commit: blocked
   external_upload: blocked
+  marketplace_publish: blocked

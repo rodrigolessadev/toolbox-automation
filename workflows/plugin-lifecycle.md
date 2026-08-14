@@ -1,4 +1,4 @@
-﻿# Workflow: ciclo de vida de plugins
+# Workflow: ciclo de vida de plugins
 
 ## Identificação
 
@@ -6,6 +6,11 @@
 - Finalidade: criar, alterar, validar ou preparar plugins
 - Repositório principal: `toolbox-plugins`
 - Repositório relacionado: `toolbox`
+
+## Regra para Plugins Privados (ex: `plugins/release`)
+
+- Plugins classificados como **privados/operacionais** (como `C:\tools\toolbox-plugins\plugins\release`) **NÃO** devem ser incluídos no `catalog.json` público nem empacotados para distribuição no Marketplace remoto.
+- Eles operam exclusivamente no ambiente local da máquina do desenvolvedor.
 
 ## Quando utilizar
 
@@ -34,7 +39,7 @@ Utilizar quando a tarefa envolver:
 
 ## Fases
 
-### Fase 1 — Identificar o plugin
+### Fase 1 - Identificar o plugin
 
 Registrar:
 
@@ -48,7 +53,7 @@ Registrar:
 - compatibilidade mínima;
 - arquivos relacionados.
 
-### Fase 2 — Analisar o contrato
+### Fase 2 - Analisar o contrato
 
 Verificar:
 
@@ -62,7 +67,7 @@ Verificar:
 - compatibilidade com plugins existentes;
 - tratamento de erros.
 
-### Fase 3 — Analisar o catálogo
+### Fase 3 - Analisar o catálogo
 
 Confirmar:
 
@@ -73,7 +78,7 @@ Confirmar:
 - se a alteração afeta versões anteriores;
 - se o Toolbox consegue interpretar a mudança.
 
-### Fase 4 — Criar o plano
+### Fase 4 - Criar o plano
 
 O plano deverá separar, quando necessário:
 
@@ -87,7 +92,7 @@ O plano deverá separar, quando necessário:
 
 Cada projeto deverá possuir checkpoint independente.
 
-### Fase 5 — Aprovação
+### Fase 5 - Aprovação
 
 Solicitar aprovação quando houver:
 
@@ -99,7 +104,7 @@ Solicitar aprovação quando houver:
 - alteração em mais de um repositório;
 - publicação de pacote.
 
-### Fase 6 — Implementação
+### Fase 6 - Implementação
 
 O implementador deverá:
 
@@ -111,7 +116,7 @@ O implementador deverá:
 - não publicar o pacote;
 - registrar todas as mudanças.
 
-### Fase 7 — Validação
+### Fase 7 - Validação
 
 Executar, quando disponíveis:
 
@@ -125,7 +130,7 @@ Executar, quando disponíveis:
 - teste de compatibilidade;
 - varredura de segredos.
 
-### Fase 8 — Revisão de segurança
+### Fase 8 - Revisão de segurança
 
 Verificar:
 
@@ -138,7 +143,7 @@ Verificar:
 - instalação de dependências;
 - execução arbitrária.
 
-### Fase 9 — Preparar a entrega
+### Fase 9 - Preparar a entrega
 
 Preparar:
 
