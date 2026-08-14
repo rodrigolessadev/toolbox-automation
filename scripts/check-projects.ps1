@@ -12,12 +12,11 @@ if (-not (Test-Path $ConfigPath)) {
     exit 1
 }
 
-$configContent = Get-Content $ConfigPath -Raw
-
 $projects = @(
-    @{ Name = "toolbox-automation"; Path = "C:\tools\toolbox-automation" },
-    @{ Name = "toolbox"; Path = "C:\tools\toolbox" },
-    @{ Name = "toolbox-plugins"; Path = "C:\tools\toolbox-plugins" }
+    @{ Name = "toolbox-automation"; Path = "C:\tools\toolbox-automation"; Required = $true },
+    @{ Name = "toolbox"; Path = "C:\tools\toolbox"; Required = $true },
+    @{ Name = "toolbox-plugins"; Path = "C:\tools\toolbox-plugins"; Required = $true },
+    @{ Name = "release-plugin (privado)"; Path = "C:\tools\toolbox-plugins\plugins\release"; Required = $false }
 )
 
 $hasErrors = $false
@@ -25,15 +24,25 @@ $hasErrors = $false
 foreach ($proj in $projects) {
     Write-Host "Verificando projeto: $($proj.Name)..." -NoNewline
     if (-not (Test-Path $proj.Path)) {
-        Write-Host " [FALHA] Diretório não existe: $($proj.Path)" -ForegroundColor Red
-        $hasErrors = $true
+        if ($proj.Required) {
+            Write-Host " [FALHA] Diretório não existe: $($proj.Path)" -ForegroundColor Red
+            $hasErrors = $true
+        }
+        else {
+            Write-Host " [OPCIONAL - AUSENTE]" -ForegroundColor Yellow
+        }
         continue
     }
 
     $gitDir = Join-Path $proj.Path ".git"
     if (-not (Test-Path $gitDir)) {
-        Write-Host " [FALHA] Não é um repositório Git válido: $($proj.Path)" -ForegroundColor Red
-        $hasErrors = $true
+        if ($proj.Required) {
+            Write-Host " [FALHA] Não é um repositório Git válido: $($proj.Path)" -ForegroundColor Red
+            $hasErrors = $true
+        }
+        else {
+            Write-Host " [OPCIONAL - SEM GIT]" -ForegroundColor Yellow
+        }
         continue
     }
 

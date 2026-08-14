@@ -7,10 +7,11 @@
 - Repositório principal: `toolbox-plugins`
 - Repositório relacionado: `toolbox`
 
-## Regra para Plugins Privados (ex: `plugins/release`)
+## Regras para Plugins Privados (ex: `plugins/release`)
 
-- Plugins classificados como **privados/operacionais** (como `C:\tools\toolbox-plugins\plugins\release`) **NÃO** devem ser incluídos no `catalog.json` público nem empacotados para distribuição no Marketplace remoto.
-- Eles operam exclusivamente no ambiente local da máquina do desenvolvedor.
+1. **Isolamento de Publicação**: Plugins classificados como **privados/operacionais** (como `C:\tools\toolbox-plugins\plugins\release`) **NÃO** devem ser incluídos no `catalog.json` público nem empacotados para distribuição no Marketplace remoto.
+2. **Versionamento Obrigatório no Manifesto (`plugin.json`)**: Qualquer manutenção, correção ou melhoria no plugin `release` deve **obrigatoriamente** incrementar a versão no seu arquivo [`plugin.json`](file:///c:/tools/toolbox-plugins/plugins/release/plugin.json) de acordo com o padrão SemVer (`Major.Minor.Patch`).
+3. **Repositório Git Local**: O plugin `release` é versionado de forma independente em seu próprio repositório Git local.
 
 ## Quando utilizar
 

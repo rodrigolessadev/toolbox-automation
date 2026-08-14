@@ -16,6 +16,11 @@ projects:
     role: plugins
     required: true
 
+  release-plugin:
+    path: "C:/tools/toolbox-plugins/plugins/release"
+    role: internal_tool
+    required: false
+
 authorized_roots:
   - "C:/tools/toolbox-automation"
   - "C:/tools/toolbox"
