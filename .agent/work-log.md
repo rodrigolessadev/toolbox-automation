@@ -192,3 +192,69 @@ Documentação dos MCPs, ferramentas e integrações disponíveis para os agente
 
 Revisar os MCPs documentados e preparar os arquivos de configuração local e
 os procedimentos de inicialização da automação.
+
+## 2026-08-13 — Configuração local e inicialização
+
+### Atividade
+
+Criação da configuração local, dos caminhos protegidos e dos procedimentos
+iniciais da automação.
+
+### Arquivos definidos
+
+- configuração local dos três repositórios;
+- configuração de exemplo;
+- caminhos protegidos;
+- checklist de inicialização;
+- verificação dos projetos;
+- carregamento do contexto;
+- criação de tarefa;
+- retomada de tarefa.
+
+### Regras estabelecidas
+
+- a configuração real não será versionada;
+- os três repositórios devem ser verificados antes do uso;
+- toda tarefa inicia com um task_id;
+- toda tarefa inicia com checkpoint;
+- tarefas bloqueadas não são retomadas automaticamente;
+- nenhuma alteração local é descartada;
+- ações externas permanecem fora da inicialização automática.
+
+### Próxima atividade
+
+Validar a configuração completa e preparar os procedimentos de este da plataforma.
+
+## 2026-08-14 — Procedimentos de teste e auditoria
+
+### Atividade
+
+Criação dos procedimentos de validação da plataforma de automação.
+
+### Testes definidos
+
+- configuração local;
+- schemas;
+- políticas;
+- workflows;
+- scripts de inicialização;
+- caminhos protegidos;
+- suíte geral de validação.
+
+### Regras estabelecidas
+
+- falhas obrigatórias bloqueiam a validação;
+- relatórios temporários não devem ser versionados;
+- testes não devem modificar os repositórios de produto;
+- segredos não devem ser lidos ou exibidos;
+- testes estruturais não substituem testes reais de integração;
+- a validação deve ser reproduzível.
+
+### Resultado
+
+A plataforma passou a possuir uma suíte inicial para verificar sua estrutura
+antes da configuração dos agentes reais.
+
+### Próxima atividade
+
+Executar a validação completa e preparar a revisão integrada da plataforma.

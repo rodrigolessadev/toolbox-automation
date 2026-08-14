@@ -91,3 +91,33 @@ Cada decisão deve informar:
 - Impacto: nenhum agente deverá receber acesso geral quando uma ferramenta
   específica for suficiente.
 - Responsável: Rodrigo
+
+## DEC-007 — Configuração local separada da configuração versionada
+
+- Data: 2026-08-13
+- Status: aprovada
+- Contexto: os repositórios estão localizados em diretórios específicos da
+  máquina de desenvolvimento.
+- Decisão: manter os caminhos reais em `config/local-projects.yaml` e
+  versionar somente `config/local-projects.example.yaml`.
+- Motivo: evitar publicação acidental de caminhos locais e permitir adaptação
+  para outras máquinas.
+- Impacto: a inicialização deverá verificar a existência da configuração local
+  antes de iniciar qualquer workflow.
+- Responsável: Rodrigo
+
+## DEC-008 — Validação estrutural antes da execução real
+
+- Data: 2026-08-14
+- Status: aprovada
+- Contexto: a automação possui schemas, agentes, políticas, workflows e
+  scripts que precisam ser coerentes antes da configuração operacional.
+- Decisão: criar uma suíte de testes estruturais antes de configurar agentes
+  reais ou executar alterações nos projetos de produto.
+- Motivo: detectar inconsistências antecipadamente e reduzir risco de
+  execução indevida.
+- Impacto: a plataforma deverá passar pela validação estrutural antes da
+  primeira execução real.
+- Limitação: essa suíte não substitui testes de integração, segurança ou
+  compatibilidade.
+- Responsável: Rodrigo

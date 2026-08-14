@@ -2,9 +2,9 @@
 
 ## Estado atual
 
-- Tarefa ativa: documentação dos MCPs e integrações
+- Tarefa ativa: procedimentos de teste, validação e auditoria
 - Status: concluído
-- Última atualização: 2026-08-13
+- Última atualização: 2026-08-14
 - Responsável: Rodrigo
 
 ## Objetivo da tarefa
@@ -27,9 +27,7 @@ riscos conhecidos dos projetos:
 
 ## Próxima ação
 
-Revisar os MCPs documentados e preparar os arquivos de configuração local e
-os procedimentos de inicialização da automação.
-
+Executar a validação completa e preparar a revisão integrada da plataforma.
 ## Em andamento
 
 - Nenhuma atividade em andamento.
