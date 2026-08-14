@@ -7,6 +7,19 @@ Ferramentas, agentes, workflows, políticas e documentação para apoiar o desen
 
 Consulte o [**Tutorial de Uso Passo a Passo**](docs/tutorial-uso.md) para começar a utilizar a plataforma.
 
+## ⚡ Prompts Sugeridos e Disparo Rápido de Issues
+
+Para iniciar o desenvolvimento de uma issue, você pode enviar comandos encurtados diretamente na conversa do Antigravity:
+
+- **Para o Toolbox**: `toolbox #10` ou `Implementar issue #10 do toolbox`
+- **Para o Toolbox Plugins**: `plugins #4` ou `toolbox-plugins #4`
+
+### Consultar Issues Abertas via Terminal:
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/get-issues.ps1
+```
+Consulte o guia completo em [`prompts/00-dispatch-issue.md`](prompts/00-dispatch-issue.md).
+
 ## Objetivo
 
 Este repositório contém a camada de automação usada pelo Antigravity para:
@@ -40,7 +53,7 @@ As configurações locais não são versionadas. Use os arquivos de exemplo para
 | `evals` | Avaliações e testes de validação dos agentes |
 | `mcp` | Integrações e configurações de MCP |
 | `policies` | Políticas de segurança, governança e aprovação |
-| `prompts` | Prompts operacionais |
+| `prompts` | Prompts operacionais e modelos de disparo |
 | `schemas` | Contratos estruturados JSON Schema |
 | `scripts` | Utilitários de suporte e automação |
 | `workflows` | Fluxos operacionais padronizados |
