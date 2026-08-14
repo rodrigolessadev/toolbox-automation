@@ -1,7 +1,7 @@
-@'
 # Configurações locais da máquina
 config/local-projects.yaml
 config/local-projects.local.yaml
+config/graphify.yaml
 *.local.yaml
 *.local.json
 
@@ -16,16 +16,18 @@ config/local-projects.local.yaml
 secrets/
 credentials/
 
-# Arquivos temporários
+# Arquivos temporários e logs
 tmp/
 temp/
 .cache/
 logs/
 *.log
+scratch/
 
-# Artefatos de execução
+# Saída de análise e relatórios gerados
+graphify-out/
 artifacts/
-reports/generated/
+reports/
 screenshots/generated/
 
 # Cache de ferramentas
@@ -35,11 +37,10 @@ screenshots/generated/
 __pycache__/
 node_modules/
 
-# Arquivos específicos de editores
+# Arquivos de IDE e editores
 .vscode/
 .idea/
 
 # Sistema operacional
 Thumbs.db
 .DS_Store
-'@ | Set-Content -Encoding UTF8 ".gitignore"

@@ -1,0 +1,11 @@
+﻿{
+    "task_type":  "plugin",
+    "description":  "Issue para rastrear o ciclo de validacao, conformidade com os padroes de automacao e comparacao tecnica do plugin Release localizado em C:\\tools\\toolbox-plugins\\plugins\\release.",
+    "workflow":  "plugin-lifecycle",
+    "repository":  "toolbox-plugins",
+    "issue_number":  4,
+    "created_at":  "2026-08-14T13:38:28.0503106Z",
+    "task_id":  "TASK-toolbox-plugins-4",
+    "title":  "Validacao e Auditoria do Plugin Release",
+    "labels":  "tipo: feature"
+}

@@ -1,9 +1,11 @@
-﻿# Toolbox Automation
+# Toolbox Automation
 
 Ferramentas, agentes, workflows, políticas e documentação para apoiar o desenvolvimento e a manutenção dos projetos:
 
 - [Toolbox](https://github.com/rodrigolessadev/toolbox)
 - [toolbox-plugins](https://github.com/rodrigolessadev/toolbox-plugins)
+
+Consulte o [**Tutorial de Uso Passo a Passo**](docs/tutorial-uso.md) para começar a utilizar a plataforma.
 
 ## Objetivo
 
@@ -20,34 +22,34 @@ Este repositório contém a camada de automação usada pelo Antigravity para:
 - registrar checkpoints;
 - retomar tarefas interrompidas.
 
-## Projetos locais
+## Projetos locais e Configurações
 
-A configuração dos diretórios locais não é versionada. Crie o arquivo:
+As configurações locais não são versionadas. Use os arquivos de exemplo para configurar seu ambiente:
 
-
-Use como referência:
-
+- `config/local-projects.yaml` (referência: `config/local-projects.example.yaml`)
+- `config/graphify.yaml` (referência: `config/graphify.example.yaml` — integração opcional, desativada por padrão)
 
 ## Diretórios
 
 | Diretório | Finalidade |
 |---|---|
+| `.agent` | Memória persistente, inventário e checkpoints |
 | `agents` | Agentes especializados |
 | `config` | Configurações da automação |
-| `docs` | Documentação |
-| `evals` | Avaliações dos agentes |
+| `docs` | Documentação operacional |
+| `evals` | Avaliações e testes de validação dos agentes |
 | `mcp` | Integrações e configurações de MCP |
-| `policies` | Políticas de segurança e aprovação |
-| `prompts` | Prompts persistentes |
-| `schemas` | Contratos estruturados |
-| `scripts` | Utilitários de suporte |
-| `workflows` | Fluxos operacionais |
+| `policies` | Políticas de segurança, governança e aprovação |
+| `prompts` | Prompts operacionais |
+| `schemas` | Contratos estruturados JSON Schema |
+| `scripts` | Utilitários de suporte e automação |
+| `workflows` | Fluxos operacionais padronizados |
 
 ## Princípios
 
 - preservar compatibilidade com plugins legados;
 - trabalhar de forma incremental;
-- consultar o Graphify antes de alterações relevantes;
+- consultar o Graphify de forma segura e somente leitura antes de alterações relevantes;
 - limitar alterações ao escopo aprovado;
 - separar análise, implementação e revisão;
 - proteger segredos e dados sensíveis;
@@ -55,6 +57,9 @@ Use como referência:
 - registrar checkpoints e pendências;
 - manter o Toolbox e o toolbox-plugins consistentes.
 
-## Estado atual
+## Integração com Graphify (Opcional)
 
-A primeira etapa definiu o escopo e os limites da automação. As próximas etapas irão configurar a documentação operacional, os agentes, os workflows e as validações.
+A integração com o Graphify é **somente leitura por padrão** e estritamente opcional.
+- **Análise de Impacto**: `powershell -ExecutionPolicy Bypass -File scripts/update-graph.ps1 -ImpactAnalysis -TargetFile <caminho>`
+- **Geração Explícita de Grafo**: `powershell -ExecutionPolicy Bypass -File scripts/update-graph.ps1 -BuildGraph`
+- **Governança**: consulte [`policies/graphify-policy.md`](policies/graphify-policy.md).

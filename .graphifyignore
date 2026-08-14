@@ -1,0 +1,34 @@
+# Arquivo de exclusão para o Graphify — toolbox-automation
+
+# Controle de versão e metadados internos
+.git/
+.git/**
+.github/
+
+# Segredos, variáveis de ambiente e credenciais
+.env
+.env.*
+*.env
+secrets/
+secrets/**
+credentials/
+credentials/**
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Saída de análise do próprio grafo (evita loop de auto-indexação)
+graphify-out/
+graphify-out/**
+
+# Caches e temporários
+__pycache__/
+*.pyc
+*.tmp
+*.log
+.agent/checkpoints/**
+.agent/requests/**
+reports/
+scratch/
+scratch/**

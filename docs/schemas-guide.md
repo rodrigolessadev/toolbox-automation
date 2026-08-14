@@ -1,4 +1,4 @@
-﻿# Guia dos schemas da automação
+# Guia dos schemas da automação
 
 ## Objetivo
 
@@ -12,6 +12,9 @@ resultados produzidos durante uma tarefa.
 
 Durante todo o processo, o estado persistente deve ser registrado em:
 
+- `.agent/checkpoints/<task_id>.json` (conforme `checkpoint.schema.json`)
+- `.agent/work-log.md`
+- `.agent/handoff.md`
 
 ## Regras
 

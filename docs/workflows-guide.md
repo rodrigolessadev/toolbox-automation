@@ -1,4 +1,4 @@
-﻿# Guia dos workflows da automação
+# Guia dos workflows da automação
 
 ## Objetivo
 
@@ -17,6 +17,16 @@ rastreáveis e retomáveis.
 
 ## Fluxo padrão
 
+O ciclo de execução padrão segue a sequência:
+
+1. **Recepção**: Validação da solicitação contra `task-request.schema.json`.
+2. **Análise**: Levantamento de impacto e dependências pelo Analista (`analysis-result.schema.json`). *(Opcional: suporte analítico somente leitura via `scripts/update-graph.ps1 -ImpactAnalysis`)*.
+3. **Planejamento**: Elaboração do plano pelo Orquestrador (`implementation-plan.schema.json`).
+4. **Aprovação**: Revisão e aprovação explícita humana antes de alterações.
+5. **Implementação**: Aplicação das mudanças autorizadas pelo Implementador (`implementation-result.schema.json`).
+6. **Validação**: Execução de testes pelo Testador (`validation-result.schema.json`).
+7. **Revisões**: Revisão visual, de segurança e de código (`review-result.schema.json`).
+8. **Encerramento**: Consolidação pelo Release Manager e checkpoint final (`workflow-result.schema.json`).
 
 ## Checkpoints obrigatórios
 

@@ -1,15 +1,44 @@
-﻿projects:
+version: 1
+
+projects:
   toolbox-automation:
-    local: "C:\\caminho\\para\\toolbox-automation"
-    remote: "https://github.com/rodrigolessadev/toolbox-automation"
-    role: "Agentes, workflows, políticas e documentação da automação"
+    path: "C:/tools/toolbox-automation"
+    role: automation
+    required: true
 
   toolbox:
-    local: "C:\\caminho\\para\\toolbox"
-    remote: "https://github.com/rodrigolessadev/toolbox"
-    role: "Aplicação principal, interface, execução e gerenciamento de plugins"
+    path: "C:/tools/toolbox"
+    role: product
+    required: true
 
   toolbox-plugins:
-    local: "C:\\caminho\\para\\toolbox-plugins"
-    remote: "https://github.com/rodrigolessadev/toolbox-plugins"
-    role: "Plugins, metadados, empacotamento e catálogo"
+    path: "C:/tools/toolbox-plugins"
+    role: plugins
+    required: true
+
+authorized_roots:
+  - "C:/tools/toolbox-automation"
+  - "C:/tools/toolbox"
+  - "C:/tools/toolbox-plugins"
+
+protected_patterns:
+  - "**/.env"
+  - "**/.env.*"
+  - "**/*.key"
+  - "**/*.pem"
+  - "**/*.p12"
+  - "**/*.pfx"
+  - "**/secrets/**"
+  - "**/credentials/**"
+
+local_only:
+  - config/local-projects.yaml
+  - ".agent/local/**"
+  - ".agent/runtime/**"
+  - ".agent/checkpoints/**"
+
+validation:
+  check_git_repository: true
+  check_clean_start: false
+  check_required_files: true
+  check_protected_paths: true

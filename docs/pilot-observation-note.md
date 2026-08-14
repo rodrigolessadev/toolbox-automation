@@ -8,19 +8,16 @@
 - Risco: baixo
 - Ações externas: não executadas
 
-## Objetivo
-
-Registrar uma evidência mínima da primeira execução controlada da plataforma.
-
-## Escopo observado
+## Fluxo observado
 
 - recebimento da tarefa;
 - carregamento do contexto;
+- registro do estado inicial;
 - criação do checkpoint;
 - análise;
 - planejamento;
 - aprovação;
-- alteração documental;
+- implementação documental;
 - validação;
 - revisão do diff;
 - encerramento.

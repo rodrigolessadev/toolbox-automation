@@ -1,0 +1,18 @@
+{
+  "task_id": "TASK-toolbox-1",
+  "issue_number": 1,
+  "repository": "toolbox",
+  "title": "Avisos de Updates",
+  "status": "completed",
+  "current_phase": "review",
+  "created_at": "2026-08-14T13:46:24.9489299Z",
+  "updated_at": "2026-08-14T14:00:00.0000000Z",
+  "blocked": false,
+  "branch": "feature/avisos-de-updates",
+  "commit": "a1ff9c0",
+  "validation": {
+    "type_check": "PASS",
+    "vite_build": "PASS",
+    "zero_errors": true
+  }
+}

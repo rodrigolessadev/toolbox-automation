@@ -1,11 +1,14 @@
-﻿# Política de acesso a arquivos
+# Política de acesso a arquivos
 
 ## Diretórios autorizados
 
 A automação poderá atuar somente nos diretórios:
 
+- `C:\tools\toolbox-automation`
+- `C:\tools\toolbox`
+- `C:\tools\toolbox-plugins`
 
-O agente deverá identificar o projeto antes de ler ou modificar arquivos.
+O agente deverá identificar o projeto antes de ler ou modificar arquivos. Contém proteção estrita a segredos e credenciais.
 
 ## Arquivos permitidos para leitura
 

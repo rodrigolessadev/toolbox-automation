@@ -1,4 +1,4 @@
-﻿[CmdletBinding()]
+[CmdletBinding()]
 param(
     [string]$ScriptsDirectory = "scripts"
 )
@@ -10,7 +10,9 @@ $requiredScripts = @(
     "check-projects.ps1",
     "load-context.ps1",
     "start-task.ps1",
-    "resume-task.ps1"
+    "resume-task.ps1",
+    "init-task-from-issue.ps1",
+    "update-graph.ps1"
 )
 
 foreach ($scriptName in $requiredScripts) {

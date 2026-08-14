@@ -1,4 +1,4 @@
-﻿# Ações bloqueadas
+# Ações bloqueadas
 
 ## Objetivo
 
@@ -49,6 +49,10 @@ aprovação genérica:
 Os agentes deverão interromper e solicitar aprovação específica antes de
 executar comandos equivalentes a:
 
+- `git reset --hard`
+- `git clean -fd`
+- `git push --force`
+- `Remove-Item -Recurse`
 
 A lista é indicativa. Comandos com efeito semelhante também devem ser tratados
 como destrutivos.

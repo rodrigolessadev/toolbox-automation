@@ -1,0 +1,45 @@
+version: 1
+
+# Integração com Graphify — Desativada por padrão
+enabled: false
+
+# Diretório de saída do grafo derivado
+output_dir: "graphify-out"
+
+# Diretórios autorizados para análise estática
+allowed_dirs:
+  - "scripts"
+  - "policies"
+  - "config"
+  - "evals"
+  - "docs"
+  - "schemas"
+  - "prompts"
+  - "workflows"
+
+# Padrões e diretórios estritamente excluídos
+excluded_patterns:
+  - ".git/**"
+  - "**/.env"
+  - "**/.env.*"
+  - "**/secrets/**"
+  - "**/credentials/**"
+  - "**/*.pem"
+  - "**/*.key"
+  - "**/*.p12"
+  - "**/*.pfx"
+  - "graphify-out/**"
+  - ".agent/checkpoints/**"
+  - "reports/**"
+
+# Formato padrão do artefato gerado
+artifact_format: "json"
+
+# Limite de tamanho de arquivo individual para análise (em bytes)
+max_file_size_bytes: 1048576 # 1 MB
+
+# Modo somente leitura obrigatório
+read_only: true
+
+# Proibição de backends ou serviços externos
+external_backend: false

@@ -1,4 +1,4 @@
-﻿# Registro de atividades
+# Registro de atividades
 
 ## 2026-08-13
 
@@ -340,4 +340,26 @@ Execução controlada da TASK-101 para validar o fluxo local da automação.
 
 ### Próxima atividade
 
-Definir e revisar o processo operacional de manutenção preventiva.
+Finalizar os scripts de procedimento, harmonizar configurações e validar o plugin release.
+
+## 2026-08-14 — Finalização da Plataforma e Validação do Plugin Release
+
+### Atividade
+
+Implementação dos procedimentos em `scripts/`, criação de `config/protected-paths.yaml`, correção de lacunas de documentação e auditoria técnica completa do plugin `release`.
+
+### Ações realizadas
+
+- Criados os scripts: `check-projects.ps1`, `load-context.ps1`, `start-task.ps1`, `resume-task.ps1`.
+- Criado `config/protected-paths.yaml` e atualizado `config/local-projects.example.yaml`.
+- Preenchidas lacunas em `README.md`, `policies/`, `docs/`.
+- Suíte `evals/` executada: 100% dos testes aprovados (`PASS`).
+- Plugin `release` (`C:\tools\toolbox-plugins\plugins\release`) validado e comparado tecnicamente com os padrões de arquitetura e ciclo de vida de plugins.
+- Criada issue de rastreamento no GitHub: `rodrigolessadev/toolbox-plugins#4`.
+
+### Resultado
+
+- Status: Aprovado
+- Testes: 100% PASS
+- Bloqueios: Nenhum
+- Conclusão: Plataforma `toolbox-automation` finalizada e operacional.

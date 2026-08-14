@@ -1,0 +1,18 @@
+version: 1
+
+protected_patterns:
+  - "**/.env"
+  - "**/.env.*"
+  - "**/*.pem"
+  - "**/*.key"
+  - "**/*.p12"
+  - "**/*.pfx"
+  - "**/secrets/**"
+  - "**/credentials/**"
+
+rules:
+  read: blocked
+  display: blocked
+  copy: blocked
+  commit: blocked
+  external_upload: blocked
