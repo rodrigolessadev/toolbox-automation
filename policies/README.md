@@ -1,4 +1,4 @@
-﻿# Políticas da Toolbox Automation Platform
+# Políticas da Toolbox Automation Platform
 
 ## Objetivo
 
@@ -33,6 +33,7 @@ As políticas devem ser interpretadas conjuntamente com:
 | `blocked-actions.md` | Lista ações proibidas |
 | `file-access-policy.md` | Controla acesso a arquivos e diretórios |
 | `external-actions-policy.md` | Controla GitHub, publicação e deploy |
+| `ui-design-guidelines.md` | Diretrizes de UI, contraste, temas e coerência contextual de ícones |
 
 ## Regra de precedência
 
