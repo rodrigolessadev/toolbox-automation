@@ -1,0 +1,43 @@
+/* ============================================================
+   Material Design 3 (M3) — Streamlit Overrides
+   ============================================================ */
+
+/* Metric Cards M3 */
+[data-testid="stMetric"] {
+  background-color: #1d2024;
+  border: 1px solid #44474f;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}
+
+[data-testid="stMetricLabel"] {
+  color: #c4c6d0 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+[data-testid="stMetricValue"] {
+  color: #a8c7fa !important;
+  font-weight: 700 !important;
+}
+
+/* Botões M3 */
+.stButton > button {
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  padding: 6px 18px !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.stButton > button:hover {
+  filter: brightness(1.1) !important;
+  transform: translateY(-1px);
+}
+
+/* Tabelas e Dataframes M3 */
+[data-testid="stDataFrame"] {
+  border: 1px solid #44474f !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
