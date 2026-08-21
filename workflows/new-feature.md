@@ -1,4 +1,4 @@
-﻿# Workflow: implementar novo recurso
+# Workflow: implementar novo recurso
 
 ## Identificação
 
@@ -94,11 +94,13 @@ Solicitar aprovação antes da implementação quando houver:
 - mudança de comportamento incompatível;
 - alteração destrutiva.
 
-### Fase 5 — Implementar
+### Fase 5 — Criar Branch e Implementar
 
 O implementador deverá:
 
-- confirmar o estado Git;
+- confirmar o estado Git e garantir que a branch `main` esteja sincronizada;
+- **criar e alternar imediatamente para a feature branch** (`git checkout -b <tipo>/<slug>-<issue_number>`) antes de alterar qualquer arquivo;
+- nunca realizar commits na branch `main`;
 - ler os arquivos previstos;
 - executar somente as etapas aprovadas;
 - registrar arquivos modificados;

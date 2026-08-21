@@ -105,16 +105,18 @@ Solicitar aprovação quando houver:
 - alteração em mais de um repositório;
 - publicação de pacote.
 
-### Fase 6 - Implementação
+### Fase 6 — Criar Branch e Implementação
 
 O implementador deverá:
 
+- criar e alternar para a branch de trabalho antes de qualquer modificação de código (`git checkout -b <tipo>/<plugin-id>-<issue_number>`);
+- nunca editar ou commitar diretamente na branch `main`;
 - alterar somente arquivos aprovados;
 - manter a estrutura do pacote;
 - atualizar metadados;
 - atualizar testes;
 - atualizar documentação;
-- não publicar o pacote;
+- não publicar o pacote ou criar tags antes do merge da PR;
 - registrar todas as mudanças.
 
 ### Fase 7 - Validação
