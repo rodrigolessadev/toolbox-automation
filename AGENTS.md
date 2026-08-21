@@ -40,11 +40,15 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
    - No `toolbox-release`: `pytest`.
 
 4. **Entrega & Pull Request**:
-   - Commitar com referência `(Closes #N)`.
+   - Commitar na branch de feature com referência `(Closes #N)`.
    - Fazer `git push` e abrir o Pull Request via `gh pr create`.
 
-5. **Retorno Estruturado & Próximos Passos Obrigatórios**:
-   - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do PR e **Lista Detalhada dos Próximos Passos a Serem Realizados**.
+5. **Geração Obrigatória de Dados de Publicação (Release Notes & Nova Versão)**:
+   - **SEMPRE** que finalizar a implementação e abrir a PR, gerar e apresentar obrigatoriamente:
+     1. **Nova Versão SemVer** do componente (Toolbox ou Plugin), devidamente calculada (Major/Minor/Patch).
+     2. **Notas da Versão (Release Notes)** completas em formato Markdown prontas para publicação (destacando novas funcionalidades, melhorias de UX, correções e estabilidade).
+     3. **Link da Pull Request** aberta.
+     4. **Próximos passos objetivos** para o usuário realizar o merge e acionar a publicação.
 
 ---
 
