@@ -1,4 +1,4 @@
-﻿# Workflow: implementar novo recurso
+# Workflow: implementar novo recurso
 
 ## Identificação
 
@@ -128,17 +128,15 @@ Acionar:
 - revisão de compatibilidade para contratos entre projetos;
 - revisão de documentação quando o recurso alterar comportamento público.
 
-### Fase 8 — Preparar a entrega
+### Fase 8 — Preparar a entrega e dados de publicação
 
-O gerente de release deverá preparar:
+O gerente de release deverá preparar e apresentar obrigatoriamente:
 
-- resumo da alteração;
-- arquivos modificados;
+- resumo da alteração e arquivos modificados;
 - testes executados;
-- riscos remanescentes;
-- mensagem de commit;
-- descrição de pull request;
-- aprovações ainda necessárias.
+- mensagem de commit e link da Pull Request criada;
+- **Nova versão SemVer** calculada do componente (Toolbox ou Plugin);
+- **Notas de Release (Release Notes)** completas em Markdown para publicação imediata.
 
 ## Deve bloquear quando
 
