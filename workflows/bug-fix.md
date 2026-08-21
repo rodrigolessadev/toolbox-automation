@@ -1,4 +1,4 @@
-﻿# Workflow: corrigir falha
+# Workflow: corrigir falha
 
 ## Identificação
 
@@ -110,9 +110,13 @@ Solicitar aprovação quando a correção envolver:
 - remoção de compatibilidade;
 - alteração de segurança.
 
-### Fase 7 — Implementar
+### Fase 7 — Criar Branch e Implementar
 
-Implementar a menor alteração capaz de corrigir a causa.
+O implementador deverá:
+
+- criar e alternar para a branch de correção (`git checkout -b fix/<slug>-<issue_number>`) antes de alterar qualquer código;
+- nunca editar ou commitar diretamente na branch `main`;
+- implementar a menor alteração capaz de corrigir a causa.
 
 Evitar:
 

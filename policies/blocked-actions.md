@@ -6,7 +6,9 @@ Listar ações que a automação não pode executar automaticamente.
 
 ## Ações sempre bloqueadas sem aprovação explícita
 
-- `git push`;
+- commit direto na branch `main` ou `master` (todas as alterações exigem feature branch);
+- `git push` direto na branch `main`;
+- criação de tags de release antes do merge da PR na branch `main`;
 - criação de pull request;
 - merge;
 - deploy;

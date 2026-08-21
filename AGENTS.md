@@ -30,21 +30,24 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
    - Analisar o código relevante no repositório correspondente.
    - Gerar `implementation_plan.md` e aguardar aprovação do usuário.
 
-2. **Branch & Implementação**:
-   - Criar branch `feature/...` ou `fix/...` ou `refactor/...` ou `chore/...`.
+2. **Criação de Branch & Isolamento (MANDATÓRIO ANTES DE EDITAR CÓDIGO)**:
+   - **NUNCA** editar arquivos ou commitar diretamente na branch `main`.
+   - Imediatamente após a aprovação do plano, criar e alternar para a branch de trabalho:
+     `git checkout -b <tipo>/<slug-da-tarefa>-<issue_number>` (ex: `feat/logon-aws-one-click-connect-69` ou `fix/login-params-67`).
    - Aplicar alterações respeitando os tokens de design do Toolbox, contraste visual rigoroso e contratos do projeto.
 
 3. **Validação Automatizada**:
    - No `toolbox`: `cargo test` + `npm run build`.
-   - No `toolbox-plugins`: `pytest` + validação de contratos/schemas.
+   - No `toolbox-plugins`: `pytest` + validação de integridade de plugins e schemas.
    - No `toolbox-release`: `pytest`.
 
-4. **Entrega & Pull Request**:
-   - Commitar com referência `(Closes #N)`.
-   - Fazer `git push` e abrir o Pull Request via `gh pr create`.
+4. **Entrega via Pull Request (OBRIGATÓRIO)**:
+   - Commitar as mudanças na branch da feature com referência à issue: `git commit -m "... (Closes #N)"`.
+   - Fazer `git push -u origin <branch>` e abrir o Pull Request via GitHub CLI (`gh pr create`).
+   - **NUNCA** criar tags de release locais ou remotas antes do merge da PR na branch `main`.
 
 5. **Retorno Estruturado & Próximos Passos Obrigatórios**:
-   - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do PR e **Lista Detalhada dos Próximos Passos a Serem Realizados**.
+   - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do Pull Request aberto e **Lista Detalhada dos Próximos Passos a Serem Realizados**.
 
 ---
 
