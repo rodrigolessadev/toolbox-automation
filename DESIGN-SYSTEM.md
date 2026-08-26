@@ -66,7 +66,23 @@ O ecossistema adota a especificação do **Material Design 3** para assegurar:
 
 ---
 
-## 4. Matriz de Casos de Uso de Superfícies
+## 4. Escala de Espaçamento (Spacing Scale - Grid 4px/8px)
+
+| Token M3 | Valor | Utilitário Tailwind | Casos de Uso Recomendados |
+| :--- | :--- | :--- | :--- |
+| `--md-sys-spacing-none` | `0px` | `m3-none` | Reset de margens e paddings |
+| `--md-sys-spacing-xs` | `4px` | `m3-xs` | Micro-gaps, espaçamento interno de badges e tooltips |
+| `--md-sys-spacing-sm` | `8px` | `m3-sm` | Gap entre ícone e texto, padding de botões compactos |
+| `--md-sys-spacing-md` | `12px` | `m3-md` | Padding padrão de inputs, selects e gap entre campos |
+| `--md-sys-spacing-lg` | `16px` | `m3-lg` | Padding interno de cards, painéis e margem entre seções |
+| `--md-sys-spacing-xl` | `20px` | `m3-xl` | Espaçamento de cabeçalhos de modais e áreas de destaque |
+| `--md-sys-spacing-xxl` | `24px` | `m3-xxl` | Margens laterais de containers principais e grids |
+| `--md-sys-spacing-xxxl` | `32px` | `m3-xxxl` | Separação entre grandes blocos de conteúdo |
+| `--md-sys-spacing-xxxxl` | `40px` | `m3-xxxxl` | Respiro de layouts amplos e telas modais completas |
+
+---
+
+## 5. Matriz de Casos de Uso de Superfícies
 
 ```
 +-------------------------------------------------------------------+
