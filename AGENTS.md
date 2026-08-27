@@ -21,6 +21,10 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
    - **Projeto**: `toolbox-release` (`C:\tools\toolbox-ecosystem\toolbox-release`, repositório `rodrigolessadev/toolbox-release`).
    - **Ação**: Buscar detalhes da issue `#N` via GitHub CLI (`gh issue view N -R rodrigolessadev/toolbox-release`), criar plano de implementação, aguardar aprovação e executar o ciclo de vida completo.
 
+4. **`automation #N`** ou **`toolbox-automation #N`**:
+   - **Projeto**: `toolbox-automation` (`C:\tools\toolbox-ecosystem\toolbox-automation`, repositório `rodrigolessadev/toolbox-automation`).
+   - **Ação**: Buscar detalhes da issue `#N` via GitHub CLI (`gh issue view N -R rodrigolessadev/toolbox-automation`), criar plano de implementação, aguardar aprovação e executar o ciclo de vida completo.
+
 ---
 
 ## 🔄 Fluxo Obrigatório de Execução
