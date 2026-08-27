@@ -25,26 +25,32 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
 
 ## 🔄 Fluxo Obrigatório de Execução
 
-1. **Diagnóstico & Planejamento**:
-   - Inspecionar a issue no GitHub no respectivo repositório.
-   - Analisar o código relevante no repositório correspondente.
-   - Gerar `implementation_plan.md` e aguardar aprovação do usuário.
+1. **Diagnóstico & Planejamento Prévio (Card em 🎯 A Fazer)**:
+   - Inspecionar a issue no GitHub no respectivo repositório (`gh issue view`).
+   - Analisar a arquitetura sem alterar código de produção e sem criar branch antecipadamente.
+   - Gerar `implementation_plan.md` e **aguardar aprovação explícita do usuário**.
 
-2. **Branch & Implementação**:
-   - Criar branch `feature/...` ou `fix/...` ou `refactor/...` ou `chore/...`.
+2. **Movimentação no Quadro & Criação de Branch (Após Aprovação)**:
+   - Imediatamente após a aprovação do plano, mover a issue no GitHub Projects para **🛠 Em andamento**.
+   - Criar e ativar a branch dedicada: `feature/...` ou `fix/...` ou `refactor/...` ou `chore/...`.
+
+3. **Implementação & Qualidade de Código**:
    - Aplicar alterações respeitando os tokens de design do Toolbox, contraste visual rigoroso e contratos do projeto.
 
-3. **Validação Automatizada**:
+4. **Validação Automatizada**:
    - No `toolbox`: `cargo test` + `npm run build`.
    - No `toolbox-plugins`: `pytest` + validação de contratos/schemas.
    - No `toolbox-release`: `pytest`.
 
-4. **Entrega & Pull Request**:
-   - Commitar com referência `(Closes #N)`.
-   - Fazer `git push` e abrir o Pull Request via `gh pr create`.
+5. **Entrega, Push & Abertura de Pull Request (Executado pelo Agente)**:
+   - Commitar com mensagem semântica e referência `(Closes #N)`.
+   - Fazer `git push -u origin <branch>`.
+   - Abrir o Pull Request via `gh pr create`.
+   - Atualizar o status da issue no GitHub Projects para **👀 Em revisão**.
 
-5. **Retorno Estruturado & Próximos Passos Obrigatórios**:
-   - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do PR e **Lista Detalhada dos Próximos Passos a Serem Realizados**.
+6. **Retorno Estruturado & Ações Restantes para o Usuário**:
+   - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do PR.
+   - Deixar para o usuário apenas: Aprovação/Merge do PR, `git checkout main && git pull` e execução do workflow de release/publicação.
 
 ---
 
