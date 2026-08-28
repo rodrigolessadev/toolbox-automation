@@ -54,6 +54,7 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
 
 6. **Retorno Estruturado & Ações Restantes para o Usuário**:
    - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do PR.
+   - **Regra para `toolbox-release`**: Como o `toolbox-release` é de uso interno/local e não é publicado no marketplace, o agente deve atualizar o `plugin.json` (`"version"`) com a versão sugerida antes de comitar.
    - Deixar para o usuário apenas: Aprovação/Merge do PR, `git checkout main && git pull` e execução do workflow de release/publicação.
 
 ---
@@ -167,3 +168,16 @@ Os plugins devem usar rigorosamente os tokens oficiais extraídos de `src/styles
   --radius-lg:    14px;
 }
 ```
+
+---
+
+## 🗄️ Persistência de Dados em Plugins: SQLite Central (Abordagem B)
+
+Conforme as diretrizes arquiteturais consolidadas nas issues **Toolbox #96 e #97**:
+1. **Banco Único Central:** Toda e qualquer persistência relacional ou estruturada de dados em plugins DEVE residir no banco de dados SQLite central do ecossistema:
+   - **Windows:** `%APPDATA%\com.toolbox.desktop\toolbox.db`
+   - **Linux / macOS:** `~/.toolbox/toolbox.db`
+2. **Proibição de Bases Isoladas:** É **terminantemente proibido** criar arquivos de banco de dados isolados (`.db`, `.sqlite`) nos diretórios dos plugins ou em pastas divergentes.
+3. **Uso de Utilitário Compartilhado:** Plugins em Python devem invocar `from shared.db_utils import get_central_db_path`.
+4. **Namespacing Obrigatório:** Todas as tabelas criadas por um plugin devem conter o prefixo identificador do plugin (ex.: `<plugin_id>_<tabela>`, `safe_entries`).
+

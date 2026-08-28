@@ -31,3 +31,17 @@ def test_ui_policy_md_exists() -> None:
     content = policy.read_text(encoding="utf-8")
     assert "WCAG AA" in content
     assert "Tokens Semânticos" in content
+
+
+def test_database_persistence_policy_exists_and_has_required_sections() -> None:
+    """Valida a presença e o conteúdo da política de banco de dados SQLite Central."""
+    policy = ROOT_DIR / "policies" / "database-persistence-policy.md"
+    assert policy.exists(), "policies/database-persistence-policy.md deve existir"
+
+    content = policy.read_text(encoding="utf-8")
+    assert "Abordagem B" in content
+    assert "com.toolbox.desktop" in content
+    assert "toolbox.db" in content
+    assert "shared.db_utils" in content
+    assert "Namespacing de Tabelas" in content
+
