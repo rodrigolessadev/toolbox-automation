@@ -44,3 +44,24 @@ node_modules/
 # Sistema operacional
 Thumbs.db
 .DS_Store
+
+# AI tooling & editor rules
+.agents/
+.claude/
+.codebuddy/
+.cursor/
+.cursorrules
+.gemini/
+.geminiignore
+.kiro/
+.qoder/
+.windsurfrules
+AGENTS.md
+CLAUDE.md
+CODEBUDDY.md
+GEMINI.md
+QODER.md
+opencode.jsonc
+.mcp.json
+.Issues/
+.issues/
