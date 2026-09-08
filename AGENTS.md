@@ -40,11 +40,16 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
 
 3. **Implementação & Qualidade de Código**:
    - Aplicar alterações respeitando os tokens de design do Toolbox, contraste visual rigoroso e contratos do projeto.
+   - **Diretrizes Técnicas de Skills Obrigatórias**:
+     - No **`toolbox` (Frontend React)**: Consultar a skill `react-best-practices` para eliminar waterfalls assíncronos (`async-defer-await`, `async-parallel`), otimizar tamanho de bundle e gerenciar ciclo de re-renders de forma performática.
+     - No **`toolbox` (TypeScript)**: Consultar a skill `typescript-expert` para contratos estritos de tipos, ausência de `any`, tipagem modular de IPC/Tauri e adaptação correta ao tooling.
+     - No **`toolbox-plugins`**, **`toolbox-release`** e **`toolbox-automation` (Python)**: Consultar a skill `pytest-skill` para estruturar testes unitários e de integração com fixtures idiomáticas, conftest desacoplado, mocks assertivos e parametrização.
 
 4. **Validação Automatizada**:
-   - No `toolbox`: `cargo test` + `npm run build`.
-   - No `toolbox-plugins`: `pytest` + validação de contratos/schemas.
+   - No `toolbox`: `cargo test` + `npm run build` (validando integridade de compilação Rust e typecheck/bundle TypeScript/React).
+   - No `toolbox-plugins`: `pytest` (adotando os padrões de fixtures e isolamento de `pytest-skill`) + validação de contratos/schemas.
    - No `toolbox-release`: `pytest`.
+   - No `toolbox-automation`: `pytest` (validação de paridade cross-platform, integridade de documentação e linters de UI).
 
 5. **Entrega, Push & Abertura de Pull Request (Executado pelo Agente)**:
    - Commitar com mensagem semântica e referência `(Closes #N)`.

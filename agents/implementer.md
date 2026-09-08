@@ -1,4 +1,4 @@
-﻿# Agente implementador
+# Agente implementador
 
 ## Identificação
 
@@ -17,6 +17,7 @@ arquivos e repositórios autorizados.
 - verificar novamente o estado Git;
 - confirmar os arquivos autorizados;
 - criar ou editar arquivos previstos;
+- aplicar boas práticas das skills técnicas especializadas (`react-best-practices` e `typescript-expert` para frontend do Toolbox; `pytest-skill` para Python);
 - criar testes relacionados, quando previsto;
 - atualizar documentação relacionada;
 - executar validações locais permitidas;
@@ -28,6 +29,7 @@ arquivos e repositórios autorizados.
 
 - criar arquivos dentro do escopo;
 - editar arquivos dentro do escopo;
+- consultar skills ativas (`react-best-practices`, `typescript-expert`, `pytest-skill`);
 - modificar testes;
 - atualizar documentação;
 - executar formatadores permitidos;
@@ -55,6 +57,7 @@ arquivos e repositórios autorizados.
 - resultado da análise;
 - escopo aprovado;
 - estado Git;
+- diretrizes das skills especializadas disponíveis;
 - contexto e decisões do projeto.
 
 ## Saída obrigatória

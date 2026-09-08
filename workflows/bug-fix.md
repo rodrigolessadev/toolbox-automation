@@ -1,4 +1,4 @@
-﻿# Workflow: corrigir falha
+# Workflow: corrigir falha
 
 ## Identificação
 
@@ -81,7 +81,7 @@ Não corrigir apenas o sintoma sem compreender o impacto.
 
 Sempre que possível, criar primeiro um teste que:
 
-- reproduza a falha;
+- reproduza a falha (estruturado segundo padrões de `pytest-skill` para Python);
 - falhe antes da correção;
 - passe depois da correção;
 - documente o comportamento esperado.
@@ -112,7 +112,7 @@ Solicitar aprovação quando a correção envolver:
 
 ### Fase 7 — Implementar
 
-Implementar a menor alteração capaz de corrigir a causa.
+Implementar a menor alteração capaz de corrigir a causa, mantendo aderência às diretrizes técnicas das skills (`react-best-practices`, `typescript-expert`).
 
 Evitar:
 
@@ -126,7 +126,7 @@ Evitar:
 Executar:
 
 - teste de regressão;
-- testes relacionados;
+- testes relacionados (`pytest` para Python, `cargo test` + `npm run build` para Toolbox);
 - suíte completa, quando possível;
 - lint;
 - typecheck;
