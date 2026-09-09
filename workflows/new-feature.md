@@ -100,6 +100,7 @@ O implementador deverá:
 
 - confirmar o estado Git;
 - ler os arquivos previstos;
+- aplicar boas práticas das skills técnicas especializadas (`react-best-practices` e `typescript-expert` para frontend do Toolbox; `pytest-skill` para testes em Python);
 - executar somente as etapas aprovadas;
 - registrar arquivos modificados;
 - registrar comandos executados;
@@ -109,11 +110,11 @@ O implementador deverá:
 
 O testador deverá executar:
 
-- testes unitários;
+- testes unitários (estruturados com fixtures e parametrização segundo a skill `pytest-skill` para Python);
 - testes de integração;
 - lint;
-- typecheck;
-- build, se aplicável;
+- typecheck rigoroso (`typescript-expert`);
+- build (`cargo test` + `npm run build`), se aplicável;
 - testes de compatibilidade;
 - validação de catálogo ou plugins, quando aplicável;
 - varredura de segredos;

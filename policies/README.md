@@ -34,6 +34,7 @@ As políticas devem ser interpretadas conjuntamente com:
 | `file-access-policy.md` | Controla acesso a arquivos e diretórios |
 | `external-actions-policy.md` | Controla GitHub, publicação e deploy |
 | `ui-design-guidelines.md` | Diretrizes de UI, contraste, temas e coerência contextual de ícones |
+| `database-persistence-policy.md` | Regra mandatória de persistência no SQLite Central (Abordagem B) |
 
 ## Regra de precedência
 

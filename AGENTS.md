@@ -21,34 +21,50 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
    - **Projeto**: `toolbox-release` (`C:\tools\toolbox-ecosystem\toolbox-release`, repositório `rodrigolessadev/toolbox-release`).
    - **Ação**: Buscar detalhes da issue `#N` via GitHub CLI (`gh issue view N -R rodrigolessadev/toolbox-release`), criar plano de implementação, aguardar aprovação e executar o ciclo de vida completo.
 
+4. **`automation #N`** ou **`toolbox-automation #N`**:
+   - **Projeto**: `toolbox-automation` (`C:\tools\toolbox-ecosystem\toolbox-automation`, repositório `rodrigolessadev/toolbox-automation`).
+   - **Ação**: Buscar detalhes da issue `#N` via GitHub CLI (`gh issue view N -R rodrigolessadev/toolbox-automation`), criar plano de implementação, aguardar aprovação e executar o ciclo de vida completo.
+
 ---
 
 ## 🔄 Fluxo Obrigatório de Execução
 
-1. **Diagnóstico & Planejamento**:
-   - Inspecionar a issue no GitHub no respectivo repositório.
-   - Analisar o código relevante no repositório correspondente.
-   - Gerar `implementation_plan.md` e aguardar aprovação do usuário.
+1. **Diagnóstico & Planejamento Prévio (Card em 🎯 A Fazer)**:
+   - Inspecionar a issue no GitHub no respectivo repositório (`gh issue view`).
+   - Analisar a arquitetura sem alterar código de produção e sem criar branch antecipadamente.
+   - Gerar `implementation_plan.md` e **aguardar aprovação explícita do usuário**.
 
-2. **Branch & Implementação**:
-   - Criar branch `feature/...` ou `fix/...` ou `refactor/...` ou `chore/...`.
+2. **Movimentação no Quadro & Criação de Branch (Após Aprovação)**:
+   - Imediatamente após a aprovação do plano, mover a issue no GitHub Projects para **🛠 Em andamento**.
+   - Criar e ativar a branch dedicada: `feature/...` ou `fix/...` ou `refactor/...` ou `chore/...`.
+
+3. **Implementação & Qualidade de Código**:
    - Aplicar alterações respeitando os tokens de design do Toolbox, contraste visual rigoroso e contratos do projeto.
+   - **Diretrizes Técnicas de Skills Obrigatórias**:
+     - No **`toolbox` (Frontend React)**: Consultar a skill `react-best-practices` para eliminar waterfalls assíncronos (`async-defer-await`, `async-parallel`), otimizar tamanho de bundle e gerenciar ciclo de re-renders de forma performática.
+     - No **`toolbox` (TypeScript)**: Consultar a skill `typescript-expert` para contratos estritos de tipos, ausência de `any`, tipagem modular de IPC/Tauri e adaptação correta ao tooling.
+     - No **`toolbox-plugins`**, **`toolbox-release`** e **`toolbox-automation` (Python)**: Consultar a skill `pytest-skill` para estruturar testes unitários e de integração com fixtures idiomáticas, conftest desacoplado, mocks assertivos e parametrização.
 
-3. **Validação Automatizada**:
-   - No `toolbox`: `cargo test` + `npm run build`.
-   - No `toolbox-plugins`: `pytest` + validação de contratos/schemas.
+4. **Validação Automatizada**:
+   - No `toolbox`: `cargo test` + `npm run build` (validando integridade de compilação Rust e typecheck/bundle TypeScript/React).
+   - No `toolbox-plugins`: `pytest` (adotando os padrões de fixtures e isolamento de `pytest-skill`) + validação de contratos/schemas.
    - No `toolbox-release`: `pytest`.
+   - No `toolbox-automation`: `pytest` (validação de paridade cross-platform, integridade de documentação e linters de UI).
 
-4. **Entrega & Pull Request**:
-   - Commitar na branch de feature com referência `(Closes #N)`.
-   - Fazer `git push` e abrir o Pull Request via `gh pr create`.
+5. **Entrega, Push & Abertura de Pull Request (Executado pelo Agente)**:
+   - Commitar na branch de feature com mensagem semântica e referência `(Closes #N)`.
+   - Fazer `git push -u origin <branch>`.
+   - Abrir o Pull Request via GitHub CLI (`gh pr create`).
+   - Atualizar o status da issue no GitHub Projects para **👀 Em revisão**.
 
-5. **Geração Obrigatória de Dados de Publicação (Release Notes & Nova Versão)**:
+6. **Geração Obrigatória de Dados de Publicação (Release Notes & Nova Versão SemVer)**:
    - **SEMPRE** que finalizar a implementação e abrir a PR, gerar e apresentar obrigatoriamente:
-     1. **Nova Versão SemVer** do componente (Toolbox ou Plugin), devidamente calculada (Major/Minor/Patch).
+     1. **Nova Versão SemVer** do componente (Toolbox, Plugin ou Módulo), devidamente calculada e justificada (Major/Minor/Patch).
      2. **Notas da Versão (Release Notes)** completas em formato Markdown prontas para publicação (destacando novas funcionalidades, melhorias de UX, correções e estabilidade).
      3. **Link da Pull Request** aberta.
      4. **Próximos passos objetivos** para o usuário realizar o merge e acionar a publicação.
+   - **Regra para `toolbox-release`**: Como o `toolbox-release` é de uso interno/local e não é publicado no marketplace, o agente deve atualizar o `plugin.json` (`"version"`) com a versão sugerida antes de comitar.
+   - Deixar para o usuário apenas: Aprovação/Merge do PR, `git checkout main && git pull` e execução do workflow de release/publicação.
 
 ---
 
@@ -161,3 +177,16 @@ Os plugins devem usar rigorosamente os tokens oficiais extraídos de `src/styles
   --radius-lg:    14px;
 }
 ```
+
+---
+
+## 🗄️ Persistência de Dados em Plugins: SQLite Central (Abordagem B)
+
+Conforme as diretrizes arquiteturais consolidadas nas issues **Toolbox #96 e #97**:
+1. **Banco Único Central:** Toda e qualquer persistência relacional ou estruturada de dados em plugins DEVE residir no banco de dados SQLite central do ecossistema:
+   - **Windows:** `%APPDATA%\com.toolbox.desktop\toolbox.db`
+   - **Linux / macOS:** `~/.toolbox/toolbox.db`
+2. **Proibição de Bases Isoladas:** É **terminantemente proibido** criar arquivos de banco de dados isolados (`.db`, `.sqlite`) nos diretórios dos plugins ou em pastas divergentes.
+3. **Uso de Utilitário Compartilhado:** Plugins em Python devem invocar `from shared.db_utils import get_central_db_path`.
+4. **Namespacing Obrigatório:** Todas as tabelas criadas por um plugin devem conter o prefixo identificador do plugin (ex.: `<plugin_id>_<tabela>`, `safe_entries`).
+

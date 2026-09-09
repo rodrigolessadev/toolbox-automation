@@ -6,6 +6,12 @@ import json
 import sys
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 ROOT_AUTOMATION = Path(__file__).resolve().parent.parent
 DEFAULT_TOOLBOX_TOKENS = ROOT_AUTOMATION.parent / "toolbox" / "src" / "tokens" / "tokens.json"
 WEB_TEMPLATE_THEME_CSS = ROOT_AUTOMATION / "templates" / "web-react-m3" / "src" / "theme" / "theme.css"
@@ -47,6 +53,9 @@ def sync_tokens(tokens_source: Path = DEFAULT_TOOLBOX_TOKENS, target_css: Path =
 """
     for k, v in data.get("shape", {}).items():
         css += f"  --md-sys-shape-corner-{k}: {v};\n"
+
+    for k, v in data.get("spacing", {}).items():
+        css += f"  --md-sys-spacing-{k}: {v};\n"
 
     for k, v in data.get("elevation", {}).items():
         css += f"  --md-sys-elevation-{k}: {v};\n"
