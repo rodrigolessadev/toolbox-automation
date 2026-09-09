@@ -60,7 +60,12 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
    - Atualizar o status da issue no GitHub Projects para **👀 Em revisão**.
    - **NUNCA** criar tags de release locais ou remotas antes do merge da PR na branch `main`.
 
-6. **Retorno Estruturado & Ações Restantes para o Usuário**:
+6. **Geração Obrigatória de Dados de Publicação (Release Notes & Nova Versão SemVer)**:
+   - **SEMPRE** que finalizar a implementação e abrir a PR, gerar e apresentar obrigatoriamente:
+     1. **Nova Versão SemVer** do componente (Toolbox, Plugin ou Módulo), devidamente calculada e justificada (Major/Minor/Patch).
+     2. **Notas da Versão (Release Notes)** completas em formato Markdown prontas para publicação (destacando novas funcionalidades, melhorias de UX, correções e estabilidade).
+     3. **Link da Pull Request** aberta.
+     4. **Próximos passos objetivos** para o usuário realizar o merge e acionar a publicação.
    - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do PR e **Lista Detalhada dos Próximos Passos a Serem Realizados**.
    - **Regra para `toolbox-release`**: Como o `toolbox-release` é de uso interno/local e não é publicado no marketplace, o agente deve atualizar o `plugin.json` (`"version"`) com a versão sugerida antes de comitar.
    - Deixar para o usuário apenas: Aprovação/Merge do PR, `git checkout main && git pull` e execução do workflow de release/publicação.
