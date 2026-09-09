@@ -34,9 +34,11 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
    - Analisar a arquitetura sem alterar código de produção e sem criar branch antecipadamente.
    - Gerar `implementation_plan.md` e **aguardar aprovação explícita do usuário**.
 
-2. **Movimentação no Quadro & Criação de Branch (Após Aprovação)**:
+2. **Movimentação no Quadro & Criação de Branch (MANDATÓRIO ANTES DE EDITAR CÓDIGO)**:
    - Imediatamente após a aprovação do plano, mover a issue no GitHub Projects para **🛠 Em andamento**.
-   - Criar e ativar a branch dedicada: `feature/...` ou `fix/...` ou `refactor/...` ou `chore/...`.
+   - **NUNCA** editar arquivos ou commitar diretamente na branch `main`.
+   - Criar e alternar para a branch de trabalho dedicada:
+     `git checkout -b <tipo>/<slug-da-tarefa>-<issue_number>` (ex: `feat/logon-aws-one-click-connect-69` ou `fix/login-params-67`).
 
 3. **Implementação & Qualidade de Código**:
    - Aplicar alterações respeitando os tokens de design do Toolbox, contraste visual rigoroso e contratos do projeto.
@@ -52,10 +54,11 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
    - No `toolbox-automation`: `pytest` (validação de paridade cross-platform, integridade de documentação e linters de UI).
 
 5. **Entrega, Push & Abertura de Pull Request (Executado pelo Agente)**:
-   - Commitar na branch de feature com mensagem semântica e referência `(Closes #N)`.
+   - Commitar as mudanças na branch da feature com mensagem semântica e referência `(Closes #N)`.
    - Fazer `git push -u origin <branch>`.
    - Abrir o Pull Request via GitHub CLI (`gh pr create`).
    - Atualizar o status da issue no GitHub Projects para **👀 Em revisão**.
+   - **NUNCA** criar tags de release locais ou remotas antes do merge da PR na branch `main`.
 
 6. **Geração Obrigatória de Dados de Publicação (Release Notes & Nova Versão SemVer)**:
    - **SEMPRE** que finalizar a implementação e abrir a PR, gerar e apresentar obrigatoriamente:
@@ -63,6 +66,7 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
      2. **Notas da Versão (Release Notes)** completas em formato Markdown prontas para publicação (destacando novas funcionalidades, melhorias de UX, correções e estabilidade).
      3. **Link da Pull Request** aberta.
      4. **Próximos passos objetivos** para o usuário realizar o merge e acionar a publicação.
+   - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do PR e **Lista Detalhada dos Próximos Passos a Serem Realizados**.
    - **Regra para `toolbox-release`**: Como o `toolbox-release` é de uso interno/local e não é publicado no marketplace, o agente deve atualizar o `plugin.json` (`"version"`) com a versão sugerida antes de comitar.
    - Deixar para o usuário apenas: Aprovação/Merge do PR, `git checkout main && git pull` e execução do workflow de release/publicação.
 
