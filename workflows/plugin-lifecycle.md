@@ -114,7 +114,7 @@ O implementador deverá:
 - alterar somente arquivos aprovados;
 - manter a estrutura do pacote;
 - atualizar metadados;
-- atualizar testes;
+- atualizar testes (adotando as diretrizes de fixtures, conftest e isolamento de `pytest-skill`);
 - atualizar documentação;
 - não publicar o pacote ou criar tags antes do merge da PR;
 - registrar todas as mudanças.
@@ -125,7 +125,7 @@ Executar, quando disponíveis:
 
 - validação do schema;
 - validação dos metadados;
-- testes do plugin;
+- testes do plugin via `pytest -v` (conforme padrões de `pytest-skill`);
 - testes de integração;
 - validação do catálogo;
 - teste de instalação local;

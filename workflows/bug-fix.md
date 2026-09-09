@@ -81,7 +81,7 @@ Não corrigir apenas o sintoma sem compreender o impacto.
 
 Sempre que possível, criar primeiro um teste que:
 
-- reproduza a falha;
+- reproduza a falha (estruturado segundo padrões de `pytest-skill` para Python);
 - falhe antes da correção;
 - passe depois da correção;
 - documente o comportamento esperado.
@@ -116,7 +116,7 @@ O implementador deverá:
 
 - criar e alternar para a branch de correção (`git checkout -b fix/<slug>-<issue_number>`) antes de alterar qualquer código;
 - nunca editar ou commitar diretamente na branch `main`;
-- implementar a menor alteração capaz de corrigir a causa.
+- implementar a menor alteração capaz de corrigir a causa, mantendo aderência às diretrizes técnicas das skills (`react-best-practices`, `typescript-expert`).
 
 Evitar:
 
@@ -130,7 +130,7 @@ Evitar:
 Executar:
 
 - teste de regressão;
-- testes relacionados;
+- testes relacionados (`pytest` para Python, `cargo test` + `npm run build` para Toolbox);
 - suíte completa, quando possível;
 - lint;
 - typecheck;

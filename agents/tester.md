@@ -1,4 +1,4 @@
-﻿# Agente testador
+# Agente testador
 
 ## Identificação
 
@@ -16,8 +16,9 @@ critérios de sucesso definidos no plano.
 - localizar testes existentes;
 - executar testes unitários;
 - executar testes de integração;
+- validar e enriquecer testes utilizando padrões idiomáticos das skills (`pytest-skill` para fixtures, parametrização e conftest em Python);
 - executar lint;
-- executar typecheck;
+- executar typecheck (`tsc` sob diretrizes de `typescript-expert`);
 - executar build, quando previsto;
 - validar catálogo e metadados;
 - validar empacotamento de plugins;
@@ -29,6 +30,7 @@ critérios de sucesso definidos no plano.
 ## Pode fazer
 
 - executar comandos de validação;
+- consultar a skill `pytest-skill` para estruturação de testes, mocks e fixtures;
 - criar testes previstos no plano;
 - atualizar fixtures de teste dentro do escopo;
 - gerar relatórios;
@@ -50,6 +52,7 @@ critérios de sucesso definidos no plano.
 - resultado da implementação;
 - plano aprovado;
 - critérios de sucesso;
+- diretrizes das skills de teste (`pytest-skill`);
 - comandos identificados no inventário;
 - estado Git.
 
