@@ -69,7 +69,12 @@ def test_runtime_setup_script_linux_tolerance() -> None:
         text=True,
     )
     assert res.returncode == 0, f"O script deve concluir com sucesso no Linux: {res.stderr}"
-    assert "Ambiente Linux/Unix detectado" in res.stdout or "Iniciando verificação" in res.stdout
+    assert (
+        "Ambiente Linux/Unix detectado" in res.stdout
+        or "Iniciando verificação" in res.stdout
+        or "Ambiente de runtime Linux validado" in res.stdout
+        or "Plataforma não-Windows detectada" in res.stdout
+    )
 
 
 def test_python_interpreter_smoke_execution() -> None:

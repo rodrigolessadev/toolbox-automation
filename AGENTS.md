@@ -10,19 +10,19 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
 
 ### Padrões Reconhecidos:
 1. **`toolbox #N`** ou **`toolbox #<numero>`**:
-   - **Projeto**: `toolbox` (`C:\tools\toolbox-ecosystem\toolbox`, repositório `rodrigolessadev/toolbox`).
+   - **Projeto**: `toolbox` (`${WORKSPACE_ROOT}/toolbox`, repositório `rodrigolessadev/toolbox`).
    - **Ação**: Buscar detalhes da issue `#N` via GitHub CLI (`gh issue view N -R rodrigolessadev/toolbox`), criar plano de implementação, aguardar aprovação e executar o ciclo de vida completo.
 
 2. **`plugins #N`** ou **`toolbox-plugins #N`**:
-   - **Projeto**: `toolbox-plugins` (`C:\tools\toolbox-ecosystem\toolbox-plugins`, repositório `rodrigolessadev/toolbox-plugins`).
+   - **Projeto**: `toolbox-plugins` (`${WORKSPACE_ROOT}/toolbox-plugins`, repositório `rodrigolessadev/toolbox-plugins`).
    - **Ação**: Buscar detalhes da issue `#N` via GitHub CLI (`gh issue view N -R rodrigolessadev/toolbox-plugins`), criar plano de implementação, aguardar aprovação e executar o ciclo de vida completo.
 
 3. **`release #N`** ou **`toolbox-release #N`**:
-   - **Projeto**: `toolbox-release` (`C:\tools\toolbox-ecosystem\toolbox-release`, repositório `rodrigolessadev/toolbox-release`).
+   - **Projeto**: `toolbox-release` (`${WORKSPACE_ROOT}/toolbox-release`, repositório `rodrigolessadev/toolbox-release`).
    - **Ação**: Buscar detalhes da issue `#N` via GitHub CLI (`gh issue view N -R rodrigolessadev/toolbox-release`), criar plano de implementação, aguardar aprovação e executar o ciclo de vida completo.
 
 4. **`automation #N`** ou **`toolbox-automation #N`**:
-   - **Projeto**: `toolbox-automation` (`C:\tools\toolbox-ecosystem\toolbox-automation`, repositório `rodrigolessadev/toolbox-automation`).
+   - **Projeto**: `toolbox-automation` (`${WORKSPACE_ROOT}/toolbox-automation`, repositório `rodrigolessadev/toolbox-automation`).
    - **Ação**: Buscar detalhes da issue `#N` via GitHub CLI (`gh issue view N -R rodrigolessadev/toolbox-automation`), criar plano de implementação, aguardar aprovação e executar o ciclo de vida completo.
 
 ---
@@ -69,6 +69,21 @@ Sempre que o usuário enviar mensagens nos formatos simplificados abaixo, interp
    - Entregar sempre: Nova versão (SemVer), mensagem de commit, bloco de notas do release, link do PR e **Lista Detalhada dos Próximos Passos a Serem Realizados**.
    - **Regra para `toolbox-release`**: Como o `toolbox-release` é de uso interno/local e não é publicado no marketplace, o agente deve atualizar o `plugin.json` (`"version"`) com a versão sugerida antes de comitar.
    - Deixar para o usuário apenas: Aprovação/Merge do PR, `git checkout main && git pull` e execução do workflow de release/publicação.
+
+---
+
+## 🛠️ Utilitários de Automação Multiplataforma (`scripts/`)
+
+O repositório `toolbox-automation` fornece utilitários em Python 3 puro e uma CLI unificada (`tb_auto.py`), compatíveis com Linux, macOS e Windows:
+
+- **Verificação de Projetos Locais**: `python scripts/tb_auto.py check`
+- **Consulta de Issues Abertas**: `python scripts/tb_auto.py issues [--project <repo>]`
+- **Inicialização de Tarefa**: `python scripts/tb_auto.py init-task --repo <repo> --issue <num>`
+- **Scaffolding de Novo Plugin**: `python scripts/tb_auto.py scaffold <nome> --type plugin-pywebview`
+- **Governança do Graphify**: `python scripts/tb_auto.py graph [--impact-analysis --target-file <path>]`
+
+> [!TIP]
+> Os agentes devem sempre priorizar a invocação direta desses utilitários via `python scripts/...` em vez de comandos legados do PowerShell ou scripts ad-hoc no terminal.
 
 ---
 

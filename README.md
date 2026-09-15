@@ -15,10 +15,19 @@ Para iniciar o desenvolvimento de uma issue, você pode enviar comandos encurtad
 - **Para o Toolbox Plugins**: `plugins #4` ou `toolbox-plugins #4`
 
 ### Consultar Issues Abertas via Terminal:
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/get-issues.ps1
+```bash
+# Via CLI unificada
+python scripts/tb_auto.py issues
+
+# Ou via script dedicado
+python scripts/get_issues.py
 ```
 Consulte o guia completo em [`prompts/00-dispatch-issue.md`](prompts/00-dispatch-issue.md).
+
+### Verificar Projetos Locais e Ambiente:
+```bash
+python scripts/tb_auto.py check
+```
 
 ## Objetivo
 
@@ -73,6 +82,6 @@ As configurações locais não são versionadas. Use os arquivos de exemplo para
 ## Integração com Graphify (Opcional)
 
 A integração com o Graphify é **somente leitura por padrão** e estritamente opcional.
-- **Análise de Impacto**: `powershell -ExecutionPolicy Bypass -File scripts/update-graph.ps1 -ImpactAnalysis -TargetFile <caminho>`
-- **Geração Explícita de Grafo**: `powershell -ExecutionPolicy Bypass -File scripts/update-graph.ps1 -BuildGraph`
+- **Análise de Impacto**: `python scripts/tb_auto.py graph --impact-analysis --target-file <caminho>`
+- **Geração Explícita de Grafo**: `python scripts/tb_auto.py graph --build-graph`
 - **Governança**: consulte [`policies/graphify-policy.md`](policies/graphify-policy.md).
