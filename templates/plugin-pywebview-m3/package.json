@@ -1,0 +1,16 @@
+{
+  "name": "@toolbox-plugins/{{PLUGIN_ID}}",
+  "version": "1.0.0",
+  "description": "{{PLUGIN_DESCRIPTION}}",
+  "private": true,
+  "dependencies": {
+    "@toolbox-plugins/shared-markdown": "^1.0.0"
+  },
+  "keywords": [
+    "toolbox",
+    "plugin",
+    "{{PLUGIN_ID}}"
+  ],
+  "author": "Rodrigo Lessa",
+  "license": "MIT"
+}

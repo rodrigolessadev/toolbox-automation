@@ -1,0 +1,98 @@
+import importlib.util
+import json
+import os
+import sys
+from pathlib import Path
+import pytest
+
+PLUGIN_DIR = Path(__file__).parent.parent / "plugins" / "{{PLUGIN_ID}}"
+if not PLUGIN_DIR.exists():
+    # Fallback para execução a partir da raiz do plugin
+    PLUGIN_DIR = Path(__file__).parent
+
+DOMAIN_PATH = PLUGIN_DIR / "domain.py"
+MAIN_PATH = PLUGIN_DIR / "main.py"
+
+# Carrega módulos de forma isolada para evitar colisão no sys.modules
+spec_domain = importlib.util.spec_from_file_location("{{PLUGIN_ID}}_domain", DOMAIN_PATH)
+plugin_domain = importlib.util.module_from_spec(spec_domain)
+spec_domain.loader.exec_module(plugin_domain)
+
+spec_main = importlib.util.spec_from_file_location("{{PLUGIN_ID}}_main", MAIN_PATH)
+plugin_main = importlib.util.module_from_spec(spec_main)
+spec_main.loader.exec_module(plugin_main)
+
+PluginApi = getattr(plugin_main, "{{PLUGIN_NAME_PASCAL}}Api")
+
+
+@pytest.fixture(autouse=True)
+def isolated_env(tmp_path, monkeypatch):
+    """Garante ambiente isolado e limpo para testes."""
+    data_dir = tmp_path / "{{PLUGIN_ID}}_data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    monkeypatch.setenv("TOOLBOX_{{PLUGIN_ID_UPPER}}_DATA_DIR", str(data_dir))
+    return data_dir
+
+
+def test_manifests_integrity():
+    """Valida o manifesto oficial plugin.json e package.json."""
+    pj = PLUGIN_DIR / "plugin.json"
+    assert pj.exists(), "plugin.json deve existir"
+    data = json.loads(pj.read_text(encoding="utf-8"))
+
+    assert data.get("name") == "{{PLUGIN_NAME}}"
+    assert data.get("version") == "1.0.0"
+    assert data.get("entry") == "main.py"
+    assert data.get("icon") == "{{PLUGIN_ICON}}"
+    assert data.get("theme_version") == "material-3"
+
+    pkg = PLUGIN_DIR / "package.json"
+    assert pkg.exists(), "package.json deve existir"
+    pkg_data = json.loads(pkg.read_text(encoding="utf-8"))
+    assert pkg_data.get("name") == "@toolbox-plugins/{{PLUGIN_ID}}"
+
+
+def test_ui_files_exist():
+    """Valida a presença de todos os arquivos de interface necessários."""
+    ui_dir = PLUGIN_DIR / "ui"
+    assert (ui_dir / "index.html").exists()
+    assert (ui_dir / "style.css").exists()
+    assert (ui_dir / "icons.js").exists()
+    assert (ui_dir / "app.js").exists()
+    assert (ui_dir / "toolbox-theme.css").exists()
+
+
+def test_domain_crud():
+    """Testa criação, leitura e exclusão de itens no domínio."""
+    assert plugin_domain.get_items() == []
+
+    # Criar item
+    item = plugin_domain.add_item("Item de Teste", "Detalhes de teste")
+    assert item["id"].startswith("item_")
+    assert item["title"] == "Item de Teste"
+
+    items = plugin_domain.get_items()
+    assert len(items) == 1
+    assert items[0]["id"] == item["id"]
+
+    # Excluir item
+    assert plugin_domain.delete_item(item["id"]) is True
+    assert len(plugin_domain.get_items()) == 0
+
+
+def test_plugin_api():
+    """Valida chamadas da API exposta ao pywebview."""
+    api = PluginApi()
+
+    ver_res = api.get_plugin_version()
+    assert ver_res["success"] is True
+    assert ver_res["version"] == "1.0.0"
+
+    add_res = api.add_item("Item via API")
+    assert add_res["success"] is True
+    assert len(add_res["items"]) == 1
+
+    item_id = add_res["item"]["id"]
+    del_res = api.delete_item(item_id)
+    assert del_res["success"] is True
+    assert len(del_res["items"]) == 0

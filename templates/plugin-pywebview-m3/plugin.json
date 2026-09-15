@@ -1,0 +1,10 @@
+{
+  "name": "{{PLUGIN_NAME}}",
+  "version": "1.0.0",
+  "description": "{{PLUGIN_DESCRIPTION}}",
+  "language": "python",
+  "entry": "main.py",
+  "icon": "{{PLUGIN_ICON}}",
+  "min_toolbox_version": "1.22.3",
+  "theme_version": "material-3"
+}
