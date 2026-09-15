@@ -1,33 +1,17 @@
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $false)]
-    [string]$TaskId = "TASK-$((Get-Date).ToString('yyyyMMdd-HHmmss'))",
-    [Parameter(Mandatory = $false)]
+    [string]$TaskId = "",
     [string]$Description = "Nova tarefa de automação",
-    [string]$CheckpointsDir = ".agent\checkpoints"
+    [string]$CheckpointsDir = ".agent/checkpoints"
 )
 
-$ErrorActionPreference = "Stop"
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$pythonScript = Join-Path $scriptDir "start_task.py"
 
-Write-Host "Inicializando tarefa: $TaskId..." -ForegroundColor Cyan
-
-if (-not (Test-Path $CheckpointsDir)) {
-    New-Item -ItemType Directory -Path $CheckpointsDir -Force | Out-Null
+$pyArgs = @($pythonScript, "--description", $Description, "--dir", $CheckpointsDir)
+if ($TaskId) {
+    $pyArgs += @("--task-id", $TaskId)
 }
 
-$checkpointFile = Join-Path $CheckpointsDir "$TaskId.json"
-
-$initialCheckpoint = @{
-    task_id = $TaskId
-    description = $Description
-    status = "in_progress"
-    created_at = (Get-Date).ToUniversalTime().ToString("o")
-    current_phase = "analysis"
-    blocked = $false
-}
-
-$initialCheckpoint | ConvertTo-Json -Depth 5 | Set-Content -Encoding UTF8 $checkpointFile
-
-Write-Host "Checkpoint inicial criado em: $checkpointFile" -ForegroundColor Green
-Write-Host "Tarefa $TaskId iniciada com sucesso." -ForegroundColor Green
-exit 0
+python @pyArgs
+exit $LASTEXITCODE
