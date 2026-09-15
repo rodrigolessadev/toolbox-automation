@@ -32,3 +32,7 @@ __pycache__/
 reports/
 scratch/
 scratch/**
+
+# Templates com placeholders (não devem ser parseados como código AST)
+templates/
+templates/**
