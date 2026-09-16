@@ -97,7 +97,12 @@ def main() -> int:
     pack_p.add_argument("--dir", required=True, help="Diretório alvo a empacotar")
     pack_p.add_argument("--output", default=None, help="Caminho do arquivo Markdown de saída")
     pack_p.add_argument("--max-tokens", type=int, default=32000, help="Limite máximo de tokens")
-    pack_p.add_argument("--json", action="store_true", help="Retorna apenas metadados em JSON")
+    # 10. audit-plugins
+    audit_p = subparsers.add_parser("audit-plugins", help="Audita conformidade dos plugins (5 regras de UX/UI e sincronização da UI compartilhada)")
+    audit_p.add_argument("--root", help="Caminho explícito para a pasta raiz de toolbox-plugins")
+    audit_p.add_argument("--plugin", help="Auditar somente um plugin específico")
+    audit_p.add_argument("--strict", action="store_true", help="Retorna código de saída 1 em caso de qualquer pendência")
+    audit_p.add_argument("--json", action="store_true", help="Retorna resultado estruturado em JSON")
 
     args = parser.parse_args()
 
@@ -208,6 +213,19 @@ def main() -> int:
         if args.json:
             sys.argv.append("--json")
         return pack_context.main()
+
+    elif args.command == "audit-plugins":
+        import audit_plugins_compliance
+        argv = []
+        if args.root:
+            argv.extend(["--root", args.root])
+        if args.plugin:
+            argv.extend(["--plugin", args.plugin])
+        if args.strict:
+            argv.append("--strict")
+        if args.json:
+            argv.append("--json")
+        return audit_plugins_compliance.main(argv)
 
     return 0
 
