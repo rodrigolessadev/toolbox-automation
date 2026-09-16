@@ -1,4 +1,4 @@
-﻿# MCP GitHub
+# MCP GitHub
 
 ## Identificação
 
@@ -13,6 +13,24 @@
 - `https://github.com/rodrigolessadev/toolbox`
 - `https://github.com/rodrigolessadev/toolbox-plugins`
 - o repositório remoto de `toolbox-automation`, quando definido.
+
+## Configuração do Servidor Oficial (`@modelcontextprotocol/server-github`)
+
+Consulte o template executável pronto em [`config/mcp_config.example.json`](../config/mcp_config.example.json):
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "<YOUR_GITHUB_TOKEN>"
+      }
+    }
+  }
+}
+```
 
 ## Operações de leitura permitidas
 

@@ -29,6 +29,15 @@ Consulte o guia completo em [`prompts/00-dispatch-issue.md`](prompts/00-dispatch
 python scripts/tb_auto.py check
 ```
 
+### Análise Estrutural e Empacotamento de Contexto (Economia de Tokens):
+```bash
+# Busca precisa de símbolos sintáticos (classes, funções, imports) sem regex:
+python scripts/tb_auto.py search --symbol PluginApi
+
+# Empacotamento cirúrgico de plugin para análise com estimativa de tokens:
+python scripts/tb_auto.py pack --dir ../toolbox-plugins/plugins/tarefas --output scratch/tarefas_pack.md
+```
+
 ## Objetivo
 
 Este repositório contém a camada de automação usada pelo Antigravity para:

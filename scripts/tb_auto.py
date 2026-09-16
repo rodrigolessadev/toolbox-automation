@@ -84,6 +84,21 @@ def main() -> int:
     scaffold_p.add_argument("--desc", help="Descrição sucinta")
     scaffold_p.add_argument("--icon", default="box", help="Identificador do ícone Lucide")
 
+    # 8. search (Code Search via AST / ast-grep)
+    search_p = subparsers.add_parser("search", help="Busca estrutural de classes, funções e imports (AST / ast-grep)")
+    search_p.add_argument("--symbol", default="*", help="Nome ou fragmento do símbolo")
+    search_p.add_argument("--type", choices=["all", "class", "func", "import"], default="all", help="Tipo de símbolo")
+    search_p.add_argument("--path", default=None, help="Caminho alvo para busca")
+    search_p.add_argument("--pattern", default=None, help="Padrão estrutural do ast-grep")
+    search_p.add_argument("--json", action="store_true", help="Retorna em formato JSON")
+
+    # 9. pack (Context Pack / Repomix)
+    pack_p = subparsers.add_parser("pack", help="Empacota cirurgicamente o contexto de um plugin ou diretório (Repomix)")
+    pack_p.add_argument("--dir", required=True, help="Diretório alvo a empacotar")
+    pack_p.add_argument("--output", default=None, help="Caminho do arquivo Markdown de saída")
+    pack_p.add_argument("--max-tokens", type=int, default=32000, help="Limite máximo de tokens")
+    pack_p.add_argument("--json", action="store_true", help="Retorna apenas metadados em JSON")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -173,6 +188,26 @@ def main() -> int:
         if args.icon:
             sys.argv.extend(["--icon", args.icon])
         return scaffold_project.main()
+
+    elif args.command == "search":
+        import code_search
+        sys.argv = ["code_search.py", "--symbol", args.symbol, "--type", args.type]
+        if args.path:
+            sys.argv.extend(["--path", args.path])
+        if args.pattern:
+            sys.argv.extend(["--pattern", args.pattern])
+        if args.json:
+            sys.argv.append("--json")
+        return code_search.main()
+
+    elif args.command == "pack":
+        import pack_context
+        sys.argv = ["pack_context.py", "--dir", args.dir, "--max-tokens", str(args.max_tokens)]
+        if args.output:
+            sys.argv.extend(["--output", args.output])
+        if args.json:
+            sys.argv.append("--json")
+        return pack_context.main()
 
     return 0
 
