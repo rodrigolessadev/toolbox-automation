@@ -126,3 +126,37 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--fg-subtle);
 }
+
+/* ==========================================================================
+   Classes Utilitárias de Ícones e Ações
+   ========================================================================== */
+.icon-sm {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-md {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-lg {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+

@@ -98,9 +98,10 @@ def test_scaffold_plugin_pywebview(tmp_path: Path) -> None:
     main_content = main_file.read_text(encoding="utf-8")
     assert "class CalcHorasApi(BasePluginApi):" in main_content
     assert "calc-horas_domain" in main_content
+    assert "plugin_dir=PLUGIN_DIR" in main_content
     ast.parse(main_content)
 
-    # 5. Valida autossuficiência de assets web
+    # 5. Valida autossuficiência de assets web e ícone de taskbar
     ui_dir = plugin_dir / "ui"
     assert ui_dir.exists()
     assert (ui_dir / "index.html").exists()
@@ -108,6 +109,26 @@ def test_scaffold_plugin_pywebview(tmp_path: Path) -> None:
     assert (ui_dir / "icons.js").exists()
     assert (ui_dir / "toolbox-theme.css").exists()
     assert (ui_dir / "app.js").exists()
+
+    # Valida asset .ico gerado na pasta ui/assets/
+    assets_dir = ui_dir / "assets"
+    assert assets_dir.exists()
+    ico_file = assets_dir / "clock.ico"
+    assert ico_file.exists()
+    assert ico_file.stat().st_size > 0
+
+    # Valida classes utilitárias de ícones M3 no CSS
+    theme_css = (ui_dir / "toolbox-theme.css").read_text(encoding="utf-8")
+    assert ".icon-sm" in theme_css
+    assert ".icon-md" in theme_css
+    assert ".icon-lg" in theme_css
+    assert ".btn-with-icon" in theme_css
+
+    # Valida catálogo expandido de ícones
+    icons_js = (ui_dir / "icons.js").read_text(encoding="utf-8")
+    assert "'sun':" in icons_js
+    assert "'moon':" in icons_js
+    assert "'settings':" in icons_js
 
     html_content = (ui_dir / "index.html").read_text(encoding="utf-8")
     assert "Calculadora de Horas" in html_content
@@ -138,6 +159,39 @@ def test_scaffold_plugin_pywebview_auto_id(tmp_path: Path) -> None:
 
     main_content = (plugin_dir / "main.py").read_text(encoding="utf-8")
     assert "class MonitorDeRedeApi(BasePluginApi):" in main_content
+    assert "plugin_dir=PLUGIN_DIR" in main_content
+
+    # Valida .ico padrão gerado
+    assert (plugin_dir / "ui" / "assets" / "box.ico").exists()
+
+
+def test_scaffold_plugin_copies_shared_ui_when_in_plugins_repo(tmp_path: Path) -> None:
+    """Valida que novos plugins scaffolded dentro de repositório de plugins herdam a fonte mestre de UI."""
+    plugins_root = tmp_path / "plugins"
+    shared_ui = plugins_root / "shared" / "ui"
+    shared_ui.mkdir(parents=True, exist_ok=True)
+
+    master_css = "/* MESTRE SHARED TEST CSS */\n:root { --master-token: #123456; }"
+    master_icons = "/* MESTRE ICONS TEST JS */\nconst ICONS = { master: '<svg></svg>' };"
+    (shared_ui / "toolbox-theme.css").write_text(master_css, encoding="utf-8")
+    (shared_ui / "icons.js").write_text(master_icons, encoding="utf-8")
+
+    plugin_dir = scaffold_project.scaffold_project(
+        template_type="plugin-pywebview",
+        project_name="Plugin Sincronizado",
+        output_dir=plugins_root,
+        plugin_id="plugin-sincronizado",
+        plugin_icon="box",
+    )
+
+    assert plugin_dir.exists()
+    ui_dir = plugin_dir / "ui"
+
+    # Deve ter copiado diretamente da fonte mestre
+    assert (ui_dir / "toolbox-theme.css").read_text(encoding="utf-8") == master_css
+    assert (ui_dir / "icons.js").read_text(encoding="utf-8") == master_icons
+    assert (ui_dir / "assets" / "box.ico").exists()
+
 
 
 def test_sync_tokens_from_file(tmp_path: Path) -> None:

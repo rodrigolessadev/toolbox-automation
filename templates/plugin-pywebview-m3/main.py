@@ -77,6 +77,7 @@ def main():
         title="{{PLUGIN_NAME}}",
         entry_html=ui_index,
         js_api=api,
+        plugin_dir=PLUGIN_DIR,
         width=960,
         height=700,
         min_size=(680, 520),
