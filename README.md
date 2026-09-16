@@ -70,8 +70,9 @@ As configurações locais não são versionadas. Use os arquivos de exemplo para
 ## Princípios
 
 - preservar compatibilidade com plugins legados;
-- trabalhar de forma incremental;
-- consultar o Graphify de forma segura e somente leitura antes de alterações relevantes;
+- trabalhar de forma incremental com baixo overhead de tokens e regras enxutas;
+- carregar diretrizes de UI sob demanda via [`docs/design-system-tokens.md`](docs/design-system-tokens.md);
+- consultar o Graphify de forma segura e somente leitura, sincronizando sob demanda apenas no encerramento da tarefa (pré-commit);
 - limitar alterações ao escopo aprovado;
 - separar análise, implementação e revisão;
 - proteger segredos e dados sensíveis;

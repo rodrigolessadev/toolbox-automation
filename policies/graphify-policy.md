@@ -15,6 +15,7 @@ O Graphify é utilizado no projeto `toolbox-automation` estritamente como uma ca
 5. **Geração Explícita (`-BuildGraph`)**: A geração ou regeneração de artefatos de grafo em `graphify-out/` exige o parâmetro explícito `-BuildGraph`.
 6. **Isolamento de Dados Sensíveis**: É estritamente vedada a indexação de `.env`, credenciais, certificados, chaves criptográficas (`*.pem`, `*.key`) ou caminhos fora do repositório.
 7. **Proibição de Serviços Externos**: Todos os dados processados permanecem estritamente no ambiente local. Nenhum grafo ou trecho de código pode ser enviado para APIs externas.
+8. **Atualização Sob Demanda (Pré-Commit / Etapa 3)**: A sincronização do grafo estrutural (`graphify update .` ou `python scripts/tb_auto.py graph`) deve ser executada exclusivamente no fechamento da implementação (Etapa 3 do fluxo oficial de 7 etapas), momentos antes do commit e da abertura do Pull Request (Etapa 4). É expressamente vedado disparar reconstruções contínuas a cada salvamento ou micro-edição intermediária de arquivos, prevenindo sobrecarga de processamento, travamentos de terminal e consumo desnecessário de tokens.
 
 ---
 
