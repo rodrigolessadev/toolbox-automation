@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_seu_token_aqui_com_escopos_repo_issues_projects"
+      },
+      "description": "Servidor MCP oficial do GitHub para consultas e operações de repositórios, issues, pull requests e projetos.",
+      "authorized_repositories": [
+        "rodrigolessadev/toolbox",
+        "rodrigolessadev/toolbox-plugins",
+        "rodrigolessadev/toolbox-automation",
+        "rodrigolessadev/toolbox-release"
+      ]
+    },
+    "github-docker": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "mcp/github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_seu_token_aqui_com_escopos_repo_issues_projects"
+      },
+      "description": "Variante Docker containerizada do GitHub MCP Server oficial para ambientes isolados."
+    }
+  }
+}

@@ -1,4 +1,4 @@
-﻿# MCPs e integrações da Toolbox Automation Platform
+# MCPs e integrações da Toolbox Automation Platform
 
 ## Objetivo
 
@@ -27,6 +27,18 @@ A documentação define:
 | `browser.md` | Navegador |
 | `documentation.md` | Documentação técnica |
 | `permissions-matrix.md` | Matriz de permissões |
+
+## ⚙️ Configuração Executável Pronta
+
+Para ativar o **GitHub MCP Server oficial** no Antigravity, Claude Desktop ou Cursor:
+1. Copie o arquivo de exemplo:
+   ```bash
+   cp config/mcp_config.example.json config/mcp_config.json
+   ```
+2. Defina sua variável `GITHUB_PERSONAL_ACCESS_TOKEN` com escopos de leitura de repositórios, issues, pull requests e projects.
+3. No Antigravity ou cliente MCP compatível, adicione o arquivo aos servidores ativos para habilitar tool calls diretas de GitHub.
+
+Consulte os detalhes em [`github.md`](github.md).
 
 ## Princípios
 
