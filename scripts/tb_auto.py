@@ -104,6 +104,14 @@ def main() -> int:
     audit_p.add_argument("--strict", action="store_true", help="Retorna código de saída 1 em caso de qualquer pendência")
     audit_p.add_argument("--json", action="store_true", help="Retorna resultado estruturado em JSON")
 
+    # 11. sync-ui
+    sync_p = subparsers.add_parser("sync-ui", help="Sincroniza folhas de estilo e ícones da fonte mestre (shared/ui/) para os plugins")
+    sync_p.add_argument("--root", help="Caminho explícito para a pasta raiz de toolbox-plugins")
+    sync_p.add_argument("--plugin", help="Sincroniza apenas um plugin específico")
+    sync_p.add_argument("--check", "--dry-run", action="store_true", help="Apenas verifica conformidade sem alterar arquivos (exit 1 em divergência)")
+    sync_p.add_argument("--verbose", action="store_true", help="Exibe detalhes de todos os arquivos processados")
+    sync_p.add_argument("--json", action="store_true", help="Retorna resultado em formato JSON")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -226,6 +234,21 @@ def main() -> int:
         if args.json:
             argv.append("--json")
         return audit_plugins_compliance.main(argv)
+
+    elif args.command == "sync-ui":
+        import sync_plugins_ui
+        argv = []
+        if args.root:
+            argv.extend(["--root", args.root])
+        if args.plugin:
+            argv.extend(["--plugin", args.plugin])
+        if args.check:
+            argv.append("--check")
+        if args.verbose:
+            argv.append("--verbose")
+        if args.json:
+            argv.append("--json")
+        return sync_plugins_ui.main(argv)
 
     return 0
 
