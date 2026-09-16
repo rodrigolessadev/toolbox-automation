@@ -11,6 +11,15 @@ import sys
 from pathlib import Path
 from typing import Dict, Optional
 
+try:
+    from common_utils import detect_workspace_root
+except ImportError:
+    try:
+        from scripts.common_utils import detect_workspace_root
+    except ImportError:
+        detect_workspace_root = None
+
+
 TEMPLATES_DIR = Path(__file__).resolve().parent.parent / "templates"
 
 TEMPLATE_CHOICES: Dict[str, str] = {
@@ -112,6 +121,76 @@ def scaffold_project(
                 dst_file.write_text(content, encoding="utf-8")
             except UnicodeDecodeError:
                 shutil.copy2(src_file, dst_file)
+
+    if is_plugin:
+        # 1. Configuração e mapeamento do asset de ícone (.ico) para a barra de tarefas
+        assets_dir = dest_dir / "ui" / "assets"
+        assets_dir.mkdir(parents=True, exist_ok=True)
+        target_ico = assets_dir / f"{icon}.ico"
+
+        if not target_ico.exists():
+            found_ico = None
+            search_dirs = []
+            if dest_dir.parent.is_dir():
+                search_dirs.append(dest_dir.parent)
+            if detect_workspace_root:
+                try:
+                    ws_root = detect_workspace_root()
+                    search_dirs.append(ws_root / "toolbox-plugins" / "plugins")
+                except Exception:
+                    pass
+
+            for sdir in search_dirs:
+                if sdir.is_dir():
+                    matches = list(sdir.glob(f"*/ui/assets/{icon}.ico"))
+                    if not matches:
+                        matches = list(sdir.glob(f"*/ui/assets/{icon}*.ico"))
+                    if matches:
+                        found_ico = matches[0]
+                        break
+
+            if found_ico and found_ico.is_file():
+                shutil.copy2(found_ico, target_ico)
+            else:
+                # Fallback: utiliza o box.ico do template ou o que já foi copiado
+                box_ico_cand = assets_dir / "box.ico"
+                if not box_ico_cand.exists():
+                    template_box = src_template / "ui" / "assets" / "box.ico"
+                    if template_box.exists():
+                        shutil.copy2(template_box, target_ico)
+                else:
+                    if target_ico != box_ico_cand:
+                        shutil.copy2(box_ico_cand, target_ico)
+
+        # Remove box.ico redundante se o ícone do plugin for diferente de "box"
+        box_ico_file = assets_dir / "box.ico"
+        if icon != "box" and box_ico_file.exists() and target_ico.exists() and target_ico != box_ico_file:
+            try:
+                box_ico_file.unlink()
+            except Exception:
+                pass
+
+        # 2. Sincronização com a fonte mestre de UI compartilhada se estiver no repositório toolbox-plugins
+        shared_ui_dir = None
+        if (dest_dir.parent / "shared" / "ui").is_dir():
+            shared_ui_dir = dest_dir.parent / "shared" / "ui"
+        elif (dest_dir.parent.parent / "plugins" / "shared" / "ui").is_dir():
+            shared_ui_dir = dest_dir.parent.parent / "plugins" / "shared" / "ui"
+        elif detect_workspace_root:
+            try:
+                ws_root = detect_workspace_root()
+                candidate_shared = ws_root / "toolbox-plugins" / "plugins" / "shared" / "ui"
+                if candidate_shared.is_dir() and "toolbox-plugins" in str(dest_dir.resolve()):
+                    shared_ui_dir = candidate_shared
+            except Exception:
+                pass
+
+        if shared_ui_dir and shared_ui_dir.is_dir():
+            for shared_name in ["toolbox-theme.css", "icons.js"]:
+                shared_src = shared_ui_dir / shared_name
+                if shared_src.is_file():
+                    shutil.copy2(shared_src, dest_dir / "ui" / shared_name)
+                    print(f"✔ [SYNC-UI] Arquivo sincronizado a partir da fonte mestre ({shared_name})")
 
     # Geração do arquivo de testes para plugins
     if is_plugin and test_template_content:
