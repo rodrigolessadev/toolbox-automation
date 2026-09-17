@@ -23,6 +23,7 @@ def setup_mock_plugin(
     has_light_theme: bool = True,
     shared_ui_synced: bool = True,
     catalog_icon: Optional[str] = None,
+    version_in_html: Optional[str] = None,
 ) -> Tuple[Path, Path, Path]:
     plugins_dir = root / "plugins"
     plugins_dir.mkdir(parents=True, exist_ok=True)
@@ -84,6 +85,18 @@ def setup_mock_plugin(
         
     (ui_dir / "toolbox-theme.css").write_text(css_content, encoding="utf-8")
     (ui_dir / "icons.js").write_text("const ICONS = { box: '<svg></svg>' };", encoding="utf-8")
+    
+    # HTML interno
+    if version_in_html is not None:
+        (ui_dir / "index.html").write_text(
+            f"<!DOCTYPE html><html><body><h1>App</h1>{version_in_html}</body></html>",
+            encoding="utf-8"
+        )
+    else:
+        (ui_dir / "index.html").write_text(
+            "<!DOCTYPE html><html><body><h1>App</h1></body></html>",
+            encoding="utf-8"
+        )
     
     # Shared UI
     shared_ui = plugins_dir / "shared" / "ui"
@@ -203,3 +216,49 @@ def test_audit_cli_json_and_strict(tmp_path: Path, capsys: pytest.CaptureFixture
     # 2. Modo Strict com falha
     code_strict = audit_plugins_compliance.main(["--root", str(tmp_path), "--strict"])
     assert code_strict == 1
+
+
+def test_audit_detects_rule3_version_badge_in_html(tmp_path: Path) -> None:
+    """Valida rejeição da Regra 3 quando o plugin possui badge de versão no HTML interno."""
+    plugins_dir, cat_file, shared_ui = setup_mock_plugin(
+        tmp_path,
+        has_window_version=True,
+        version_in_html='<span id="versionBadge" class="badge">v1.0.0</span>'
+    )
+    
+    res = audit_plugins_compliance.audit_plugins(plugins_dir, cat_file, shared_ui)
+    assert res["passed"] == 0
+    plugin = res["plugins"][0]
+    assert plugin["compliant"] is False
+    assert plugin["rules"]["rule3_window_version"]["passed"] is False
+    assert "Violação da Regra 3: Versão encontrada no HTML interno" in plugin["rules"]["rule3_window_version"]["detail"]
+    assert "barra de títulos" in plugin["rules"]["rule3_window_version"]["detail"]
+
+
+def test_audit_detects_rule3_plugin_version_badge_variant(tmp_path: Path) -> None:
+    """Valida detecção de variações de badge como pluginVersionBadge e classes de versão."""
+    plugins_dir, cat_file, shared_ui = setup_mock_plugin(
+        tmp_path,
+        has_window_version=True,
+        version_in_html='<span id="pluginVersionBadge" class="badge badge-accent">v1.6.4</span>'
+    )
+    
+    res = audit_plugins_compliance.audit_plugins(plugins_dir, cat_file, shared_ui)
+    plugin = res["plugins"][0]
+    assert plugin["rules"]["rule3_window_version"]["passed"] is False
+    assert "Violação da Regra 3" in plugin["rules"]["rule3_window_version"]["detail"]
+
+
+def test_audit_passes_rule3_when_version_strictly_in_titlebar(tmp_path: Path) -> None:
+    """Valida aprovação da Regra 3 quando a versão está no main.py e ausente do HTML."""
+    plugins_dir, cat_file, shared_ui = setup_mock_plugin(
+        tmp_path,
+        has_window_version=True,
+        version_in_html=None  # HTML limpo sem elementos de versão
+    )
+    
+    res = audit_plugins_compliance.audit_plugins(plugins_dir, cat_file, shared_ui)
+    plugin = res["plugins"][0]
+    assert plugin["rules"]["rule3_window_version"]["passed"] is True
+    assert "exclusivamente na barra de títulos" in plugin["rules"]["rule3_window_version"]["detail"]
+

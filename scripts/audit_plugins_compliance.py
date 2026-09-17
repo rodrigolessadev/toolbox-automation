@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -74,22 +75,68 @@ def check_rule2_taskbar_icon(plugin_dir: Path, icon_name: str) -> Tuple[bool, st
 
 
 def check_rule3_window_version(plugin_dir: Path, version: str) -> Tuple[bool, str]:
-    """Regra 3: Versão na barra de títulos da janela (v{version} ou plugin_dir em main.py)."""
+    """Regra 3: Versão exclusiva na barra de títulos da janela (v{version} ou plugin_dir em main.py, proibida no HTML interno)."""
     main_file = plugin_dir / "main.py"
     if not main_file.is_file():
         return False, "main.py ausente"
     
     main_code = main_file.read_text(encoding="utf-8", errors="ignore")
     
-    # Suporta: plugin_dir=PLUGIN_DIR, título explícito com v{version}, ou método get_window_title()
+    # 1. Validação Positiva: suporte a plugin_dir=PLUGIN_DIR, título explícito com v{version}, ou get_window_title()
+    has_title_version = False
     if "plugin_dir=" in main_code or "plugin_dir" in main_code:
-        return True, "Janela inicializada com suporte a plugin_dir (leitura dinâmica de versão)"
-    if f"v{version}" in main_code or "get_window_title" in main_code:
-        return True, f"Versão explicitamente vinculada à janela (v{version})"
-    if "f\"{title}" in main_code and "version" in main_code.lower():
-        return True, "Título formatado dinamicamente com versão"
+        has_title_version = True
+    elif f"v{version}" in main_code or "get_window_title" in main_code:
+        has_title_version = True
+    elif "f\"{title}" in main_code and "version" in main_code.lower():
+        has_title_version = True
     
-    return False, "Janela criada sem vinculação de versão nem plugin_dir em main.py"
+    if not has_title_version:
+        return False, "Janela criada sem vinculação de versão nem plugin_dir em main.py"
+    
+    # 2. Validação Negativa: a versão NÃO deve constar no HTML interno (ui/*.html)
+    ui_dir = plugin_dir / "ui"
+    if ui_dir.is_dir():
+        for html_file in sorted(ui_dir.glob("*.html")):
+            html_content = html_file.read_text(encoding="utf-8", errors="ignore")
+            
+            # Detecção de IDs ou classes específicos de versão (ex: id="versionBadge", class="version-badge")
+            badge_attr_pattern = re.compile(
+                r"""<[^>]*(?:id|class)\s*=\s*['"][^'"]*(?:versionBadge|pluginVersionBadge|version-badge|app-version|plugin-version|version-tag|badge-version)[^'"]*['"][^>]*>""",
+                re.IGNORECASE,
+            )
+            if badge_attr_pattern.search(html_content):
+                return False, (
+                    f"Violação da Regra 3: Versão encontrada no HTML interno ({html_file.name}). "
+                    f"A versão deve residir exclusivamente na barra de títulos da janela."
+                )
+
+            # Detecção de versão declarada explícita dentro de tags (ex: >v1.0.0< ou >v{version}<)
+            if version:
+                clean_ver = version.strip()
+                escaped_ver = re.escape(clean_ver)
+                exact_ver_pattern = re.compile(
+                    rf"""<([a-zA-Z0-9_-]+)[^>]*>\s*v?{escaped_ver}\s*</\1>""",
+                    re.IGNORECASE,
+                )
+                if exact_ver_pattern.search(html_content):
+                    return False, (
+                        f"Violação da Regra 3: Versão encontrada no HTML interno ({html_file.name}). "
+                        f"A versão deve residir exclusivamente na barra de títulos da janela."
+                    )
+
+            # Detecção de badge genérica com padrão semântico vX.Y[.Z]
+            generic_badge_ver = re.compile(
+                r"""<([a-zA-Z0-9_-]+)[^>]*class\s*=\s*['"][^'"]*\bbadge\b[^'"]*['"][^>]*>\s*v?\d+\.\d+(\.\d+)?\s*</\1>""",
+                re.IGNORECASE,
+            )
+            if generic_badge_ver.search(html_content):
+                return False, (
+                    f"Violação da Regra 3: Versão encontrada no HTML interno ({html_file.name}). "
+                    f"A versão deve residir exclusivamente na barra de títulos da janela."
+                )
+
+    return True, "Versão configurada exclusivamente na barra de títulos da janela (sem duplicação na UI interna)"
 
 
 def check_rule4_icon_utility_classes(plugin_dir: Path) -> Tuple[bool, str]:
